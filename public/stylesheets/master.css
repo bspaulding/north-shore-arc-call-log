@@ -1,0 +1,15 @@
+html, body {
+	margin: 0px;
+	height: 100%;
+}
+
+#wrapper {
+	width: 800px;
+	height: 100%;
+	
+	margin: 0px auto;
+	padding: 20px;
+	
+	border-left: thin solid #000;
+	border-right: thin solid #000;
+}

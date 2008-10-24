@@ -1,0 +1,42 @@
+<h1>Listing managers</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Nickname</th>
+    <th>Home phone</th>
+    <th>Mobile phone</th>
+    <th>Email address</th>
+    <th>Gender</th>
+    <th>Address street</th>
+    <th>Address city</th>
+    <th>Address state</th>
+    <th>Address zip</th>
+    <th>Doh</th>
+  </tr>
+
+<% for manager in @managers %>
+  <tr>
+    <td><%=h manager.first_name %></td>
+    <td><%=h manager.last_name %></td>
+    <td><%=h manager.nickname %></td>
+    <td><%=h manager.home_phone %></td>
+    <td><%=h manager.mobile_phone %></td>
+    <td><%=h manager.email_address %></td>
+    <td><%=h manager.gender %></td>
+    <td><%=h manager.address_street %></td>
+    <td><%=h manager.address_city %></td>
+    <td><%=h manager.address_state %></td>
+    <td><%=h manager.address_zip %></td>
+    <td><%=h manager.doh %></td>
+    <td><%= link_to 'Show', manager %></td>
+    <td><%= link_to 'Edit', edit_manager_path(manager) %></td>
+    <td><%= link_to 'Destroy', manager, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New manager', new_manager_path %>

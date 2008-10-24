@@ -1,0 +1,63 @@
+<p>
+  <b>First name:</b>
+  <%=h @manager.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%=h @manager.last_name %>
+</p>
+
+<p>
+  <b>Nickname:</b>
+  <%=h @manager.nickname %>
+</p>
+
+<p>
+  <b>Home phone:</b>
+  <%=h @manager.home_phone %>
+</p>
+
+<p>
+  <b>Mobile phone:</b>
+  <%=h @manager.mobile_phone %>
+</p>
+
+<p>
+  <b>Email address:</b>
+  <%=h @manager.email_address %>
+</p>
+
+<p>
+  <b>Gender:</b>
+  <%=h @manager.gender %>
+</p>
+
+<p>
+  <b>Address street:</b>
+  <%=h @manager.address_street %>
+</p>
+
+<p>
+  <b>Address city:</b>
+  <%=h @manager.address_city %>
+</p>
+
+<p>
+  <b>Address state:</b>
+  <%=h @manager.address_state %>
+</p>
+
+<p>
+  <b>Address zip:</b>
+  <%=h @manager.address_zip %>
+</p>
+
+<p>
+  <b>Doh:</b>
+  <%=h @manager.doh %>
+</p>
+
+
+<%= link_to 'Edit', edit_manager_path(@manager) %> |
+<%= link_to 'Back', managers_path %>

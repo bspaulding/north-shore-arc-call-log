@@ -1,0 +1,59 @@
+<h1>New manager</h1>
+
+<% form_for(@manager) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname %>
+  </p>
+  <p>
+    <%= f.label :home_phone %><br />
+    <%= f.text_field :home_phone %>
+  </p>
+  <p>
+    <%= f.label :mobile_phone %><br />
+    <%= f.text_field :mobile_phone %>
+  </p>
+  <p>
+    <%= f.label :email_address %><br />
+    <%= f.text_field :email_address %>
+  </p>
+  <p>
+    <%= f.label :gender %><br />
+    <%= f.text_field :gender %>
+  </p>
+  <p>
+    <%= f.label :address_street %><br />
+    <%= f.text_field :address_street %>
+  </p>
+  <p>
+    <%= f.label :address_city %><br />
+    <%= f.text_field :address_city %>
+  </p>
+  <p>
+    <%= f.label :address_state %><br />
+    <%= f.text_field :address_state %>
+  </p>
+  <p>
+    <%= f.label :address_zip %><br />
+    <%= f.text_field :address_zip %>
+  </p>
+  <p>
+    <%= f.label :doh %><br />
+    <%= f.date_select :doh %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', managers_path %>

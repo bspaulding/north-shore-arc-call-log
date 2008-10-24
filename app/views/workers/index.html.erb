@@ -1,0 +1,42 @@
+<h1>Listing workers</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Nickname</th>
+    <th>Home phone</th>
+    <th>Mobile phone</th>
+    <th>Email address</th>
+    <th>Gender</th>
+    <th>Address street</th>
+    <th>Address city</th>
+    <th>Address state</th>
+    <th>Address zip</th>
+    <th>Doh</th>
+  </tr>
+
+<% for worker in @workers %>
+  <tr>
+    <td><%=h worker.first_name %></td>
+    <td><%=h worker.last_name %></td>
+    <td><%=h worker.nickname %></td>
+    <td><%=h worker.home_phone %></td>
+    <td><%=h worker.mobile_phone %></td>
+    <td><%=h worker.email_address %></td>
+    <td><%=h worker.gender %></td>
+    <td><%=h worker.address_street %></td>
+    <td><%=h worker.address_city %></td>
+    <td><%=h worker.address_state %></td>
+    <td><%=h worker.address_zip %></td>
+    <td><%=h worker.doh %></td>
+    <td><%= link_to 'Show', worker %></td>
+    <td><%= link_to 'Edit', edit_worker_path(worker) %></td>
+    <td><%= link_to 'Destroy', worker, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New worker', new_worker_path %>
