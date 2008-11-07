@@ -1,3 +1,0 @@
-update_page do |page|
-  page.replace_html 'search_results', :partial => 'search_results', :object => @people
-end
