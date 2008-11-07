@@ -1,0 +1,21 @@
+<%= @people.size %> <%= (@people.size == 1) ? 'result.' : 'results.'%><br/>
+<table>
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Email Address</th>
+		<th>Home Phone</th>
+		<th>Mobile Phone</th>
+	</tr>
+	
+	<% @people.each_with_index do |person, index| %>
+	<tr class="<%= (index % 2 == 0) ? 'light' : 'dark' %>">
+		<td><%= person.first_name %></td>
+		<td><%= person.last_name %></td>
+		<td><%= person.email_address %></td>
+		<td><%= person.home_phone %></td>
+		<td><%= person.mobile_phone %></td>
+		<td><%= link_to '->', person_path(person) %></td>
+	</tr>
+	<% end %>
+</table>

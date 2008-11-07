@@ -1,0 +1,2 @@
+class DirectCareProvider < Person
+end

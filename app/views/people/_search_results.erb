@@ -1,0 +1,20 @@
+<%= @search_results.size %> <%= (@search_results.size == 1) ? 'result.' : 'results.'%><br/>
+<table>
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Email Address</th>
+		<th>Home Phone</th>
+		<th>Mobile Phone</th>
+	</tr>
+	
+	<% @search_results.each do |search_result| %>
+	<tr>
+		<td><%= search_result.first_name %></td>
+		<td><%= search_result.last_name %></td>
+		<td><%= search_result.email_address %></td>
+		<td><%= search_result.home_phone %></td>
+		<td><%= search_result.mobile_phone %></td>
+	</tr>
+	<% end %>
+</table>

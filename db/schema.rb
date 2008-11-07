@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081024022012) do
+ActiveRecord::Schema.define(:version => 20081027160128) do
+
+  create_table "certifications", :force => true do |t|
+    t.string   "name"
+    t.string   "short_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "people", :force => true do |t|
     t.string   "type"
@@ -25,6 +32,16 @@ ActiveRecord::Schema.define(:version => 20081024022012) do
     t.string   "address_state"
     t.string   "address_zip"
     t.datetime "doh"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "pay_rate_dollars"
+    t.integer  "pay_rate_cents"
+  end
+
+  create_table "persons_certifications", :force => true do |t|
+    t.integer  "certification_id"
+    t.integer  "person_id"
+    t.datetime "expiration_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

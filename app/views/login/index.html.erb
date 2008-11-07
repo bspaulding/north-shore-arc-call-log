@@ -1,0 +1,24 @@
+<div align="center">
+	<p><b>Web Call Log</b></p>
+</div>
+
+<% form_tag url_for(:controller => 'login', :action => 'login') do %>
+<div style="width:325px;;margin: 0px auto;border:0px solid #000;">
+<p><b>Email Address</b><br/>
+	<input type="text" name="email_address" size="30" style="padding:5px;font-family:verdana;font-size:1.2em;">
+</p>
+
+<p><b>Password</b><br/>
+	<input type="password" name="password" size="30" style="padding:5px;font-family:verdana;font-size:1.2em;">
+</p>
+
+<div align="center">
+	<p><%= submit_tag "Login" %></p>
+</div>
+</div>
+<% end -%>
+
+<p><em>
+Supervisor: <%= Supervisor.first.email_address %><br/>
+DirectCare: <%= DirectCareProvider.first.email_address %>
+</em></p>

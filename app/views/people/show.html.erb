@@ -1,63 +1,48 @@
+<div id="profile">
+
+<div id="title"><%= @person.name %> (<em>"<%= @person.nickname %>"</em>)</div>
+
+<img src="/images/profile_no_image.jpg" width="200px" height="200px" class="profile_picture">
+
+<div id="profile_detail">
+
+<p><b>Gender:</b> <%= @person.gender.capitalize %></p>
+
 <p>
-  <b>First name:</b>
-  <%=h @person.first_name %>
+	<b>Hired On:</b><br/>
+	<%= @person.doh.strftime("%B %d, %Y") %>
 </p>
 
 <p>
-  <b>Last name:</b>
-  <%=h @person.last_name %>
+	<b>Email:</b><br/>
+	<%= @person.email_address %>
 </p>
 
 <p>
-  <b>Nickname:</b>
-  <%=h @person.nickname %>
+	<b>Home Phone:</b><br/>
+	<%= @person.home_phone %>
 </p>
 
 <p>
-  <b>Home phone:</b>
-  <%=h @person.home_phone %>
+	<b>Mobile Phone:</b><br/>
+	<%= @person.mobile_phone %>
 </p>
 
 <p>
-  <b>Mobile phone:</b>
-  <%=h @person.mobile_phone %>
+<b>Address</b><br/>
+<%= @person.address_street %><br/>
+<%= @person.address_city %>, <%= @person.address_state %> <%= @person.address_zip %>
 </p>
+</div>
+
+<br/>
+<hr>
 
 <p>
-  <b>Email address:</b>
-  <%=h @person.email_address %>
+<b>Certifications</b><br/>
+<% @person.persons_certifications.each do |pc| %>
+<%= pc.certification.name %> - <em><%= pc.expiration_date.strftime("%B %d, %Y") %></em><br/>
+<% end %>
 </p>
 
-<p>
-  <b>Gender:</b>
-  <%=h @person.gender %>
-</p>
-
-<p>
-  <b>Address street:</b>
-  <%=h @person.address_street %>
-</p>
-
-<p>
-  <b>Address city:</b>
-  <%=h @person.address_city %>
-</p>
-
-<p>
-  <b>Address state:</b>
-  <%=h @person.address_state %>
-</p>
-
-<p>
-  <b>Address zip:</b>
-  <%=h @person.address_zip %>
-</p>
-
-<p>
-  <b>Doh:</b>
-  <%=h @person.doh %>
-</p>
-
-
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
+</div>

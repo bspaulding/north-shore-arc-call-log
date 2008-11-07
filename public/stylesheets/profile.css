@@ -1,0 +1,37 @@
+#profile {
+	width: 600px;
+	height: 100%;
+	margin: 0px auto;
+}
+
+#profile #title {
+	width: 100%;
+	margin-bottom: 10px;
+	
+	font-weight: bold;
+	font-size: 1.5em;
+	float: left;
+}
+
+img .profile_picture {
+	float: right;
+	clear: left;
+	border: 1px solid #CCC;
+	padding: 2px;
+	margin-left: 10px;
+}
+
+#profile #profile_detail {
+	width: 380px;
+	float: left;
+	margin-right: 10px;
+	padding: 0px;
+}
+
+#search_results table tr .light {
+	background: #FFF;
+}
+
+#search_results table tr .dark {
+	background: #CCC;
+}

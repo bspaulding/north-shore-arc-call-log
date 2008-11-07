@@ -1,0 +1,23 @@
+<% form_for @person do |f| %>
+<table>
+	<tr>
+		<td><%= f.label :first_name %></td>
+		<td><%= f.label :last_name %></td>
+	</tr>
+		<td><%= f.text_field :first_name %></td>
+		<td><%= f.text_field :last_name %></td>
+		<td><%= link_to "Advanced Search", url_for(:controller => 'people', :action => 'advanced_search') %></td>
+	</tr>
+</table>		
+<% end %>
+
+<%= observe_form 'new_person',
+		:url => {:action => 'filter_results'},
+ 		:update => 'search_results',
+ 		:frequency => 1 %>
+
+<hr>
+
+<div id="search_results">
+	
+</div>

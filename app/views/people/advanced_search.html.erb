@@ -1,0 +1,48 @@
+<% form_for @person do |f| %>
+	<div id="profile">
+
+	<div id="title"><%= f.text_field :first_name, :size => 20 %> <%= f.text_field :last_name, :size => 20 %> (<em>"<%= f.text_field :nickname, :size => 12 %>"</em>)</div>
+
+	<img src="/images/profile_no_image.jpg" width="200px" height="200px" class="profile_picture">
+
+	<div id="profile_detail">
+
+	<p><b>Gender:</b> <%= f.radio_button :gender, 'male' %> Male <%= f.radio_button :gender, 'female' %> Female</p>
+
+	<p>
+		<b>Hired On:</b><br/>
+		<%= f.date_select :doh %>
+	</p>
+
+	<p>
+		<b>Email:</b><br/>
+		<%= f.text_field :email_address %>
+	</p>
+
+	<p>
+		<b>Home Phone:</b><br/>
+		<%= f.text_field :home_phone %>
+	</p>
+
+	<p>
+		<b>Mobile Phone:</b><br/>
+		<%= f.text_field :mobile_phone %>
+	</p>
+
+	<p>
+	<b>Address</b><br/>
+	<%= f.text_field :address_street, :size => 30 %><br/>
+	<%= f.text_field :address_city, :size => 12 %>, <%= state_select @person, :address_state, 'US', {:selected => "Massachusetts"} %> <%= f.text_field :address_zip, :size => 5 %>
+	</p>
+	</div>
+
+	<br/>
+	<hr>
+
+	<p>
+	<b>Certifications</b><br/>
+	<%= f.collection_select :certifications, Certification.all, :id, :name %> <%= button_to_function 'Add' %>
+	</p>
+
+	</div>
+<% end %>

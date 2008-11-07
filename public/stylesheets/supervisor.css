@@ -1,0 +1,51 @@
+#section_boxes {
+	width: 624px;
+	margin: 40px auto;
+	padding: 0;
+}
+
+#staff_section_box {
+	float: left;
+	
+	width: 300px;
+	height: 300px;
+	
+	border: 1px solid #000;
+	
+	margin-right: 10px;
+	
+	text-align: center;
+}
+
+#staff_section_box a:link, a:visited {
+	text-decoration:none;
+	color: #000;
+}
+
+#staff_section_box:hover {
+	text-decoration:none;
+	background: #EEE;
+}
+
+#houses_section_box {
+	float: left;
+	
+	width: 300px;
+	height: 300px;
+	
+	border: 1px solid #000;
+	
+	margin-left: 10px;
+	
+	text-align: center;
+}
+
+#houses_section_box a:link, a:visited {
+	text-decoration:none;
+	color: #000;
+}
+
+#houses_section_box:hover {
+	text-decoration:none;
+	background: #EEE;
+}
