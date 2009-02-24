@@ -20,5 +20,5 @@
 
 <p><em>
 <% unless Supervisor.all.size == 0 %>Supervisor: <%= Supervisor.first.email_address %><br/><% end %>
-<% unless DirectCare.all.size == 0 %>DirectCare: <%= DirectCareProvider.first.email_address %><% end %>
+<% unless DirectCareProvider.all.size == 0 %>DirectCare: <%= DirectCareProvider.first.email_address %><% end %>
 </em></p>
