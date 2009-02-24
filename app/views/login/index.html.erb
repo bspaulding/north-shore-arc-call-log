@@ -19,6 +19,6 @@
 <% end -%>
 
 <p><em>
-<% unless Supervisor.count == 0 %>Supervisor: <%= Supervisor.first.email_address %><br/><% end %>
-<% unless DirectCare.count == 0 %>DirectCare: <%= DirectCareProvider.first.email_address %><% end %>
+<% unless Supervisor.all.size == 0 %>Supervisor: <%= Supervisor.first.email_address %><br/><% end %>
+<% unless DirectCare.all.size == 0 %>DirectCare: <%= DirectCareProvider.first.email_address %><% end %>
 </em></p>
