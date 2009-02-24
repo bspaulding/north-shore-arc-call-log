@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :advanced_searches
+
   map.root :controller => 'login'
   
   map.connect '/people/search', :controller => 'people', :action => 'search'

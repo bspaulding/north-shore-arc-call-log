@@ -1,6 +1,8 @@
+<%= @people.size %> <%= (@people.size == 1) ? 'result.' : 'results.'%> <%= link_to "Edit Search", edit_advanced_search_url(@advanced_search) %>
+
+<hr>
+
 <% unless @people.size == 0 %>
-	
-<%= @people.size %> <%= (@people.size == 1) ? 'result.' : 'results.'%><br/>
 <table>
 	<tr>
 		<th>First Name</th>

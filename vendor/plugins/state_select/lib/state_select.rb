@@ -2,7 +2,7 @@ module ActionView::Helpers::FormOptionsHelper
   
   # Return select and option tags for the given object and method, using state_options_for_select to generate the list of option tags.
   def state_select(object, method, country='US', options = {}, html_options = {})
-    ActionView::Helpers::InstanceTag.new(object, method, self, nil, options.delete(:object)).to_state_select_tag(country, options, html_options)
+    ActionView::Helpers::InstanceTag.new(object, method, self, options.delete(:object)).to_state_select_tag(country, options, html_options)
   end
   
   # Returns a string of option tags for states in a country. Supply a state name as +selected+ to

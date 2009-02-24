@@ -1,0 +1,42 @@
+<h1>Listing advanced_searches</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Nickname</th>
+    <th>Email</th>
+    <th>Home phone</th>
+    <th>Mobile phone</th>
+    <th>Address street</th>
+    <th>Address city</th>
+    <th>Address state</th>
+    <th>Address zip</th>
+    <th>Hired before</th>
+    <th>Hired after</th>
+  </tr>
+
+<% for advanced_search in @advanced_searches %>
+  <tr>
+    <td><%=h advanced_search.first_name %></td>
+    <td><%=h advanced_search.last_name %></td>
+    <td><%=h advanced_search.nickname %></td>
+    <td><%=h advanced_search.email %></td>
+    <td><%=h advanced_search.home_phone %></td>
+    <td><%=h advanced_search.mobile_phone %></td>
+    <td><%=h advanced_search.address_street %></td>
+    <td><%=h advanced_search.address_city %></td>
+    <td><%=h advanced_search.address_state %></td>
+    <td><%=h advanced_search.address_zip %></td>
+    <td><%=h advanced_search.hired_before %></td>
+    <td><%=h advanced_search.hired_after %></td>
+    <td><%= link_to 'Show', advanced_search %></td>
+    <td><%= link_to 'Edit', edit_advanced_search_path(advanced_search) %></td>
+    <td><%= link_to 'Destroy', advanced_search, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New advanced_search', new_advanced_search_path %>
