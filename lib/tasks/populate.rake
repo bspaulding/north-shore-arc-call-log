@@ -3,10 +3,12 @@ namespace :db do
     require 'populator'
     require 'faker'
     
-    @fa = Certification.find(:first, :conditions => {:name => 'First Aid'})
-    
     Person.destroy_all
     PersonsCertification.destroy_all
+    Certification.destroy_all
+    
+    @fa = Certification.create(:name => 'First Aid')
+    @fa.save!
     
     DirectCareProvider.populate 50...100 do |person|
       fs = Faker::Name.first_name
