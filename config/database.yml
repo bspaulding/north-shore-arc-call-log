@@ -16,6 +16,6 @@ test:
 production:
   adapter: mysql
   database: nsarc_call_log
-  user: nsarc
-  pass: n5arcdb
+  username: nsarc
+  password: n5arcdb
   timeout: 5000
