@@ -1,5 +1,7 @@
 <div id="section_boxes">
-	<strong>Import HR Spreadsheet: </strong><input type="file"/><input type="Submit" value="Upload &amp; Import"><br/>
+	<%= form_tag "/supervisor/upload_spreadsheet", :method => "post", :multipart => true %>
+	<strong>Import HR Spreadsheet: </strong><input name="file" type="file"/><input type="Submit" value="Upload &amp; Import"><br/>
+	</form>
 	<hr>
 	<a href="/people/search"><div id="staff_section_box">Staff</div></a>
 

@@ -9,10 +9,11 @@ set :use_sudo, false
 set :branch, 'master'
 
 set :deploy_to, "/home/nsarc/#{application}"
+set :deploy_via, :copy
 
-role :app, "172.26.23.10"
-role :web, "172.26.23.10"
-role :db,  "172.26.23.10", :primary => true
+role :app, "192.168.10.13"
+role :web, "192.168.10.13"
+role :db,  "192.168.10.13", :primary => true
 
 # Restart the server the passenger way
 namespace :passenger do
