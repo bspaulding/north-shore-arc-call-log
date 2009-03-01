@@ -1,0 +1,39 @@
+<h1>Database Update</h1>
+<p>
+	Date: <%= @update.created_at %>
+</p>
+
+<p>
+	Spreadsheet Path:<br/>
+	<%= @update.spreadsheet_path %>
+</p>
+
+<h2>Changes</h2>
+
+
+<% unless @update.changes[:created].size == 0 %>
+<h3>Created</h3>
+<p>
+<% @update.changes[:created].each do |pid| %>	
+<%= pid %><br/>
+<% end %>
+</p>
+<% end %>
+
+<% unless @update.changes[:updated].size == 0 %>
+<h3>Updated</h3>
+<p>
+<% @update.changes[:updated].each do |change| %>
+Updated PID=<%= change[0] %>'s <%= change[1] %> from <%= change[2] %> to <%= change[3] %><br/>
+<% end %>
+</p>
+<% end %>
+
+<% unless @update.changes[:destroyed].size == 0 %>
+<h3>Updated</h3>
+<p>
+<% @update.changes[:destroyed].each do |pname| %>	
+<%= pname %><br/>
+<% end %>
+</p>
+<% end %>

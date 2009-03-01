@@ -192,3 +192,87 @@ default formats are encoded in ISO-8859-1
 /Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
 /Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
 ** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/brads/Documents/Schoolwork/Senior and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+default formats are encoded in ISO-8859-1
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.4 available at 0.0.0.0:3000
+** Writing PID file to /Users/brads/Documents/Schoolwork/Senior
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/brads/Documents/Schoolwork/Senior and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+default formats are encoded in ISO-8859-1
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.4 available at 0.0.0.0:3000
+** Writing PID file to /Users/brads/Documents/Schoolwork/Senior
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/brads/Documents/Schoolwork/Senior and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+default formats are encoded in ISO-8859-1
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.4 available at 0.0.0.0:3000
+** Writing PID file to /Users/brads/Documents/Schoolwork/Senior
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+use Excel.new to handle .xls spreadsheet files
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/brads/Documents/Schoolwork/Senior and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+default formats are encoded in ISO-8859-1
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.4 available at 0.0.0.0:3000
+** Writing PID file to /Users/brads/Documents/Schoolwork/Senior
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+rm: Seminar/Project: No such file or directory
+rm: Files/nsarc_call_log/tmp/20090224214602_sheet.xls: No such file or directory
+rm: /Users/brads/Documents/Schoolwork/Senior: No such file or directory
+rm: Seminar/Project: No such file or directory
+rm: Files/nsarc_call_log/tmp/20090224214640_sheet.xls: No such file or directory
+rm: /Users/brads/Documents/Schoolwork/Senior: No such file or directory
+rm: Seminar/Project: No such file or directory
+rm: Files/nsarc_call_log/tmp/20090224214736_sheet.xls: No such file or directory
+rm: /Users/brads/Documents/Schoolwork/Senior: No such file or directory
+rm: Seminar/Project: No such file or directory
+rm: Files/nsarc_call_log/tmp/20090224214752_sheet.xls: No such file or directory
+rm: /Users/brads/Documents/Schoolwork/Senior: No such file or directory
+rm: Seminar/Project: No such file or directory
+rm: Files/nsarc_call_log/tmp/20090224215141_sheet.xls: No such file or directory
+** Daemonized, any open files are closed.  Look at /Users/brads/Documents/Schoolwork/Senior and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+default formats are encoded in ISO-8859-1
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.4 available at 0.0.0.0:3000
+** Writing PID file to /Users/brads/Documents/Schoolwork/Senior
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+/Users/brads/Documents/Schoolwork/Senior Seminar/Project Files/nsarc_call_log/app/controllers/login_controller.rb:11: warning: parenthesize argument(s) for future version
+** TERM signal received.

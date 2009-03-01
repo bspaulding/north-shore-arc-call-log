@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090220162948) do
+ActiveRecord::Schema.define(:version => 20090301215531) do
 
   create_table "advanced_searches", :force => true do |t|
     t.string   "first_name"
@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(:version => 20090220162948) do
     t.datetime "updated_at"
   end
 
+  create_table "database_updates", :force => true do |t|
+    t.string   "spreadsheet_path"
+    t.text     "changes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "people", :force => true do |t|
     t.string   "type"
     t.string   "first_name"
@@ -54,7 +61,7 @@ ActiveRecord::Schema.define(:version => 20090220162948) do
     t.string   "address_city"
     t.string   "address_state"
     t.string   "address_zip"
-    t.datetime "doh"
+    t.date     "doh"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "pay_rate_dollars"

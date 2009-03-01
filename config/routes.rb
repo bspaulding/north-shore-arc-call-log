@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :database_updates
   map.resources :advanced_searches
 
   map.root :controller => 'login'

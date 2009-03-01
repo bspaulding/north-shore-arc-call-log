@@ -15,8 +15,4 @@ class ApplicationController < ActionController::Base
   
   # Load parseexcel
   require 'parseexcel'
-  
-  # Include custom exceptions
-  require "#{RAILS_ROOT}/lib/exceptions.rb"
-  include CallLogExceptions
 end
