@@ -1,6 +1,16 @@
 html, body {
 	margin: 0px;
 	height: 100%;
+	font-family: verdana;
+	font-size: 0.9em;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+p {
+	font-size: 0.9em;
 }
 
 #wrapper {
@@ -12,4 +22,16 @@ html, body {
 	
 	border-left: thin solid #000;
 	border-right: thin solid #000;
+}
+
+#flash_error {
+	color: red;
+	font-weight: bolder;
+	
+	width: 300px;
+	height: auto;
+	
+	border: 2px solid red;
+	
+	background: #AA0000;
 }

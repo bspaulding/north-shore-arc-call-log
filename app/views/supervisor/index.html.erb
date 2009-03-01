@@ -1,17 +1,14 @@
 <div id="section_boxes">
-	<%= form_tag "/database_updates", :method => "post", :multipart => true %>
-	<strong>Import HR Spreadsheet: </strong><input name="file" type="file"/><input type="Submit" value="Upload &amp; Import"><br/>
-	</form>
-	
-	<% if DatabaseUpdate.count == 0 %>
-		<p><em>The database has never been updated, please import data through the form above.</em></p>
-	<% else %>
-		<p><em>The database was last updated on <%= DatabaseUpdate.first(:order => "created_at DESC").created_at.strftime("%A %B %d, at %I:%M %p") %>.</em></p>
-	<% end %>
-	
-	<hr>
-	
+<%= form_tag "/database_updates", :method => "post", :multipart => true %>
+<h3>Update Database</h3>
+<input name="file" type="file"/><input type="Submit" value="Upload &amp; Import"><br/>
+</form>
+<% if DatabaseUpdate.count == 0 %>
+	<p><em>The database has never been updated, please import data through the form above.</em></p>
+<% else %>
+	<p><em>The database was last updated on <%= DatabaseUpdate.first(:order => "created_at DESC").created_at.strftime("%A %B %d, at %I:%M %p") %>.</em></p>
+<% end %>
+<hr>
 	<a href="/people/search"><div id="staff_section_box">Staff</div></a>
-
 	<a href="/houses"><div id="houses_section_box">Houses</div></a>
 </div>

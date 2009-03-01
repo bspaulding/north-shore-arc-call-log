@@ -1,5 +1,8 @@
-# DatabaseUpdate
-# --------------------
+# Class: DatabaseUpdate
+# Author: Bradley J. Spaulding
+# ------------------
+# DatabaseUpdate encapsulates a particular instance of a spreadsheet import,
+# and contains all the logic for running that import on the database.
 # Each time data is imported, a DatabaseUpdate is created, tracking:
 #     - the file location of the spreadsheet used
 #     - the date and time the update was run

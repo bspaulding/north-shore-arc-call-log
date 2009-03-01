@@ -12,7 +12,10 @@
 <div id="wrapper">
 	<div align="center"><img src="/images/nsarc_logo.gif"></div>
 	
-	<p style="color: green"><%= flash[:notice] %></p>
+	<h1>Supervisor</h1>
+	
+	<% if flash[:error] %><p style="color: green"><%= flash[:notice] %></p><% end %>
+	<% if flash[:error] %><div id="flash_error"><%= flash[:error] %></div><% end %>
 
 	<%= yield  %>
 </div>
