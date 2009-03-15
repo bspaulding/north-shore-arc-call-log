@@ -1,17 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.root :controller => 'login'
+  
   map.resources :database_updates
   map.resources :advanced_searches
-
-  map.root :controller => 'login'
+  map.resources :houses
+  map.resources :individuals
+  map.resources :people
   
   map.connect '/people/search', :controller => 'people', :action => 'search'
   map.connect '/people/advanced_search', :controller => 'people', :action => 'advanced_search'
-  
-  # Temporary Routes
-  map.connect '/houses', :controller => 'houses', :action => 'index'
-  map.connect '/houses/show/:id', :controller => 'houses', :action => 'show'
-  
-  map.resources :people
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090301215531) do
+ActiveRecord::Schema.define(:version => 20090315034109) do
 
   create_table "advanced_searches", :force => true do |t|
     t.string   "first_name"
@@ -48,6 +48,55 @@ ActiveRecord::Schema.define(:version => 20090301215531) do
     t.datetime "updated_at"
   end
 
+  create_table "houses", :force => true do |t|
+    t.text     "agency_staff"
+    t.text     "overview"
+    t.text     "ratio"
+    t.text     "trainings_needed"
+    t.text     "medication_times"
+    t.text     "waivers"
+    t.text     "keys"
+    t.text     "schedule_info"
+    t.text     "phone_numbers"
+    t.string   "name"
+    t.string   "address_street"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.string   "address_zip"
+    t.string   "phone_1"
+    t.string   "phone_2"
+    t.string   "fax"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "behavior_plans"
+  end
+
+  create_table "houses_individuals", :force => true do |t|
+    t.integer "house_id"
+    t.integer "individual_id"
+  end
+
+  create_table "houses_people", :force => true do |t|
+    t.integer "house_id"
+    t.integer "person_id"
+  end
+
+  create_table "individuals", :force => true do |t|
+    t.string   "name"
+    t.string   "guardian_name"
+    t.string   "guardian_phone_home"
+    t.string   "guardian_phone_work"
+    t.string   "guardian_phone_mobile"
+    t.string   "pcp"
+    t.string   "pcp_phone_number"
+    t.string   "day_program"
+    t.string   "day_program_phone"
+    t.string   "transportation"
+    t.string   "transportation_phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "people", :force => true do |t|
     t.string   "type"
     t.string   "first_name"
@@ -68,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20090301215531) do
     t.integer  "pay_rate_cents"
     t.integer  "hrid"
     t.integer  "bu_code"
+    t.string   "position"
   end
 
   create_table "persons_certifications", :force => true do |t|

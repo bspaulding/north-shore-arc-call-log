@@ -1,55 +1,50 @@
-<h1>House Name</h1>
-
+<h1><%= (@house.name.nil?) ? "Unnamed House" : @house.name %></h1>
 <p>
-	House Address<br/>
-	Phone 1 // Phone 2 // Fax - Fax
+	<%= in_place_editor_field :house, 'address_street' %><br/>
+	<%= in_place_editor_field :house, 'address_city' %>, <%= in_place_editor_field :house, 'address_state' %> <%= in_place_editor_field :house, 'address_zip' %><br/>
+	<%= in_place_editor_field :house, 'phone_1' %> // <%= in_place_editor_field :house, 'phone_2' %> // <%= in_place_editor_field :house, 'fax' %>
+</p>
 
-<h3>Directors</h3>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Position</th>
-		<th>Trainings</th>
-		<th>Phone Number(s)</th>
-	</tr>
-</table>
+<%= form_remote_tag :url => url_for(:action => 'add_person_to_house') %>
+<%= hidden_field_tag 'house_id', @house.id %>
+<%= text_field_with_auto_complete :person, 'name' %> <%= submit_tag 'Add Person' %>
+</form>
 
-<h3>House Managers</h3>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Position</th>
-		<th>Trainings</th>
-		<th>Phone Number(s)</th>
-	</tr>
-</table>
+<hr>
 
-<h3>Overnight Managers</h3>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Position</th>
-		<th>Trainings</th>
-		<th>Phone Number(s)</th>
-	</tr>
-</table>
+<div id="house_detail">
+<%= render :partial => 'house', :object => @house %>
+</div>
 
-<h3>Relief Staff</h3>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Position</th>
-		<th>Trainings</th>
-		<th>Phone Number(s)</th>
-	</tr>
-</table>
+<h3>Agency Staff</h3>
+<%= in_place_editor_field :house, 'agency_staff', {}, {:rows => 10, :cols => 100} %>
 
-<h3>Overtime Staff</h3>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Position</th>
-		<th>Trainings</th>
-		<th>Phone Number(s)</th>
-	</tr>
-</table>
+<h3>Overview</h3>
+<%= in_place_editor_field :house, 'overview', {}, {:rows => 10, :cols => 100} %>
+
+<h3>Ratio</h3>
+<%= in_place_editor_field :house, 'ratio', {}, {:rows => 10, :cols => 100} %>
+
+<h3>Trainings Needed</h3>
+<%= in_place_editor_field :house, 'trainings_needed', {}, {:rows => 10, :cols => 100} %>
+
+<h3>Medication Times</h3>
+<%= in_place_editor_field :house, 'medication_times', {}, {:rows => 10, :cols => 100} %>
+
+<h3>Waivers</h3>
+<%= in_place_editor_field :house, 'waivers', {}, {:rows => 10, :cols => 100} %>
+
+<h3>Keys</h3>
+<%= in_place_editor_field :house, 'keys', {}, {:rows => 10, :cols => 100} %>
+
+<h3>Schedule Info</h3>
+<%= in_place_editor_field :house, 'schedule_info', {}, {:rows => 10, :cols => 100} %>
+
+<h3>Behavior Plans</h3>
+<%= in_place_editor_field :house, 'behavior_plans', {}, {:rows => 10, :cols => 100} %>
+
+<h3>Individuals</h3>
+<p><b>TODO: Individuals Table, with Ajaxy in page create/add.</b></p>
+
+<h3>Phone Numbers</h3>
+<%= in_place_editor_field :house, 'phone_numbers', {}, {:rows => 10, :cols => 100} %>

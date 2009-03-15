@@ -1,0 +1,22 @@
+<tr id="house_person_id_<%= house_person_table_row.id %>">
+	<td><%= house_person_table_row.name %></td>
+	<td><%= house_person_table_row.position %></td>
+	<td>
+		<ul>
+			<% house_person_table_row.certifications.each do |cert| %>
+			<li><%= cert.name %></li>
+			<% end %>
+		</ul>
+	</td>
+	<td>
+		Home: <%= (house_person_table_row.home_phone.nil?) ? "None" : house_person_table_row.home_phone %><br/>
+		Cell: <%= (house_person_table_row.mobile_phone.nil?) ? "None" : house_person_table_row.mobile_phone %>
+	</td>
+	<td>
+		<%= form_remote_tag :url => url_for(:controller => 'houses', :action => 'remove_person') %>
+		<%= hidden_field_tag 'house_id', house_id %>
+		<%= hidden_field_tag 'person_id', house_person_table_row.id %>
+		<%= submit_tag "Remove" %>
+		</form>
+	</td>
+</tr>

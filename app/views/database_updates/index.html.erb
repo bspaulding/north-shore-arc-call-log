@@ -1,2 +1,8 @@
-<h1>DatabaseUpdates#index</h1>
-<p>Find me in app/views/database_updates/index.html.erb</p>
+<h1>Database Updates</h1>
+<% unless @updates.size == 0 %>
+<ul>
+<% @updates.each do |update| %>
+	<li><%= link_to(update.created_at.strftime("%m-%d-%Y %I:%M %p"), update) %></li>
+<% end %>
+</ul>
+<% end %>

@@ -1,0 +1,105 @@
+<table>
+	<tr>
+		<th align="left" width="200px">Name</th>
+		<th align="left" width="200px">Position</th>
+		<th align="left" width="200px">Trainings</th>
+		<th align="left" width="200px">Phone Number(s)</th>
+	</tr>
+	<%= render :partial => "house_person_table_row", :collection => house.house_directors, :locals => {:house_id => house.id} %>
+	<%= render :partial => "house_person_table_row", :collection => house.asst_div_directors, :locals => {:house_id => house.id} %>
+	<%= render :partial => "house_person_table_row", :collection => house.clinical_managers, :locals => {:house_id => house.id} %>
+	<%= render :partial => "house_person_table_row", :collection => house.asst_house_managers, :locals => {:house_id => house.id} %>
+</table>
+
+<h3>House Managers</h3>
+<table>
+	<tr>
+		<th align="left" width="200px">Name</th>
+		<th align="left" width="200px">Position</th>
+		<th align="left" width="200px">Trainings</th>
+		<th align="left" width="200px">Phone Number(s)</th>
+	</tr>
+	<% if house.house_managers.size == 0 %>
+		<tr>
+			<td colspan="4" align="center">
+				<p><em>
+					No House Managers are currently on this house profile.<br/>
+					Please add house managers using the form at the top of this page.
+				</em></p>
+			</td>
+		</tr>
+	<% else %>
+		<%= render :partial => "house_person_table_row", :collection => house.house_managers, :locals => {:house_id => house.id} %>
+	<% end %>
+</table>
+
+<h3>Overnight Managers</h3>
+<table>
+	<tr>
+		<th align="left" width="200px">Name</th>
+		<th align="left" width="200px">Position</th>
+		<th align="left" width="200px">Trainings</th>
+		<th align="left" width="200px">Phone Number(s)</th>
+	</tr>
+	
+	<% if house.awake_overnights.size == 0 %>
+		<tr>
+			<td colspan="4" align="center">
+				<p><em>
+					No Awake Overnight staff are currently on this house profile.<br/>
+					Please add Awake Overnight staff using the form at the top of this page.
+				</em></p>
+			</td>
+		</tr>
+	<% else %>
+		<%= render :partial => "house_person_table_row", :collection => house.awake_overnights, :locals => {:house_id => house.id} %>
+	<% end %>
+</table>
+
+<h3>Relief Staff</h3>
+<table>
+	<tr>
+		<th align="left" width="200px">Name</th>
+		<th align="left" width="200px">Position</th>
+		<th align="left" width="200px">Trainings</th>
+		<th align="left" width="200px">Phone Number(s)</th>
+	</tr>
+	
+	<% if house.relief_staff.size == 0 %>
+		<tr>
+			<td colspan="4" align="center">
+				<p><em>
+					No relief staff are currently on this house profile.<br/>
+					Please add relief staff using the form at the top of this page.
+				</em></p>
+			</td>
+		</tr>
+	<% else %>
+		<%= render :partial => "house_person_table_row", :collection => house.relief_staff, :locals => {:house_id => house.id} %>
+	<% end %>
+	</tr>
+</table>
+
+<h3>Overtime Staff</h3>
+<table>
+	<tr>
+		<th align="left" width="200px">Name</th>
+		<th align="left" width="200px">Position</th>
+		<th align="left" width="200px">Trainings</th>
+		<th align="left" width="200px">Phone Number(s)</th>
+	</tr>
+	
+	<% if house.overtime_staff.size == 0 %>
+		<tr>
+			<td colspan="4" align="center">
+				<p><em>
+					No relief staff are currently on this house profile.<br/>
+					Please add relief staff using the form at the top of this page.
+				</em></p>
+			</td>
+		</tr>
+	<% else %>
+		<%= render :partial => "house_person_table_row", :collection => house.overtime_staff, :locals => {:house_id => house.id} %>
+	<% end %>
+	</tr>
+</table>

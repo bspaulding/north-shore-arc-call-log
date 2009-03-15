@@ -1,0 +1,82 @@
+--- !ruby/object:Gem::Specification 
+name: parseexcel
+version: !ruby/object:Gem::Version 
+  version: 0.5.2
+platform: ruby
+authors: 
+- Hannes Wyss
+autorequire: 
+bindir: bin
+cert_chain: 
+date: 2007-07-18 00:00:00 -04:00
+default_executable: 
+dependencies: []
+
+description: Reads Excel documents on any platform
+email: hannes.wyss@gmail.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README
+- COPYING
+- usage-en.txt
+files: 
+- lib/parseexcel.rb
+- lib/parseexcel/format.rb
+- lib/parseexcel/olestorage.rb
+- lib/parseexcel/parseexcel.rb
+- lib/parseexcel/parser.rb
+- lib/parseexcel/workbook.rb
+- lib/parseexcel/worksheet.rb
+- test/suite.rb
+- test/test_format.rb
+- test/test_olestorage.rb
+- test/test_parser.rb
+- test/test_workbook.rb
+- test/test_worksheet.rb
+- test/data/annotation.xls
+- test/data/bar.xls
+- test/data/comment.5.0.xls
+- test/data/comment.xls
+- test/data/dates.xls
+- test/data/float.5.0.xls
+- test/data/float.xls
+- test/data/foo.xls
+- test/data/image.xls
+- test/data/nil.xls
+- test/data/umlaut.5.0.xls
+- test/data/umlaut.biff8.xls
+- test/data/uncompressed.str.xls
+- COPYING
+- README
+- usage-en.txt
+has_rdoc: false
+homepage: http://rubyspreadsheet.sf.net
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">"
+    - !ruby/object:Gem::Version 
+      version: 0.0.0
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 1
+summary: Reads Excel documents on any platform
+test_files: 
+- test/suite.rb

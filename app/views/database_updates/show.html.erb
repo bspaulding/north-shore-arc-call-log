@@ -24,7 +24,7 @@
 <h3>Updated</h3>
 <p>
 <% @update.changes[:updated].each do |change| %>
-Updated PID=<%= change[0] %>'s <%= change[1] %> from <%= change[2] %> to <%= change[3] %><br/>
+Updated <%= Person.find(change[0]).name %>'s <%= change[1] %> from <%= change[2] %> to <%= change[3] %><br/>
 <% end %>
 </p>
 <% end %>

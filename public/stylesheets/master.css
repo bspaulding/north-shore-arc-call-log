@@ -25,7 +25,7 @@ p {
 }
 
 #flash_error {
-	color: red;
+	color: white;
 	font-weight: bolder;
 	
 	width: 300px;
@@ -34,4 +34,23 @@ p {
 	border: 2px solid red;
 	
 	background: #AA0000;
+}
+
+#modal_dialog_bg {
+	background-color: rgba(100, 100, 100, 0.6);
+	z-index: 100;
+	left: 0px;
+	top: 0px;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+}
+
+#modal_dialog_content {
+	z-index: 101;	
+	background-color: white;
+	position: absolute;
+	top: 25px;
+	margin: 0px auto;
+	padding: 25px;
 }
