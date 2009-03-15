@@ -14,11 +14,15 @@ p {
 }
 
 #wrapper {
+	padding-left: 20px;
+	padding-bottom: 100px;
+	padding-right: 20px;
+	padding-top: 20px;
+	margin-left: auto;
+	margin-bottom: 0px;
+	margin-right: auto;
+	margin-top: 0px;
 	width: 800px;
-	height: 100%;
-	
-	margin: 0px auto;
-	padding: 20px;
 	
 	border-left: thin solid #000;
 	border-right: thin solid #000;

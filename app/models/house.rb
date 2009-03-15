@@ -1,6 +1,6 @@
 class House < ActiveRecord::Base
 	# Constants
-	DEFAULT_FIELD_TEXT = "This section currently has no information.<br/>Please enter the appropriate information here by clicking on this text."
+	DEFAULT_FIELD_TEXT = "This section currently has no information. Please enter the appropriate information here by clicking on this text."
 	DEFAULT_ADDRESS_STREET = "Click To Add A Street Address"
 	DEFAULT_ADDRESS_CITY = "Click To Add A City"
 	DEFAULT_ADDRESS_STATE = "Click To Add A State"
