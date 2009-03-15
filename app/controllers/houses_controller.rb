@@ -19,6 +19,17 @@ class HousesController < ApplicationController
 	in_place_edit_for :house, :phone_2
 	in_place_edit_for :house, :fax
 	
+	in_place_edit_for :individual, :guardian_name
+	in_place_edit_for :individual, :guardian_phone_home
+	in_place_edit_for :individual, :guardian_phone_work
+	in_place_edit_for :individual, :guardian_phone_mobile
+	in_place_edit_for :individual, :pcp
+	in_place_edit_for :individual, :pcp_phone_number
+	in_place_edit_for :individual, :day_program
+	in_place_edit_for :individual, :day_program_phone
+	in_place_edit_for :individual, :transportation
+	in_place_edit_for :individual, :transportation_phone
+	
   # auto_complete_for :person, 'first_name'
   # custom auto_complete_for method is required, since 'name' is a virtual attribute
   def auto_complete_for_person_name
@@ -62,6 +73,29 @@ class HousesController < ApplicationController
   	end
   end
 
+	# Method: add_individual_to_house
+	# Creates an individual with the given name, and adds it to the specified house.
+	# Ajax method, returns the updated individuals view to the browser.
+	def add_individual_to_house
+		individual = Individual.create!(	:name => params[:individual_name],
+																			:guardian_name => Individual::DEFAULT_GUARDIAN_NAME,
+																			:guardian_phone_home => Individual::DEFAULT_GUARDIAN_PHONE_HOME,
+																			:guardian_phone_work => Individual::DEFAULT_GUARDIAN_PHONE_WORK,
+																			:guardian_phone_mobile => Individual::DEFAULT_GUARDIAN_PHONE_MOBILE,
+																			:pcp => Individual::DEFAULT_PCP,
+																			:pcp_phone_number => Individual::DEFAULT_PCP_PHONE,
+																			:day_program => Individual::DEFAULT_DAY_PROGRAM,
+																			:day_program_phone => Individual::DEFAULT_DAY_PROGRAM_PHONE,
+																			:transportation => Individual::DEFAULT_TRANSPORTATION,
+																			:transportation_phone => Individual::DEFAULT_TRANSPORTATION_PHONE)
+		@house = House.find(params[:house_id])
+		@house.individuals << individual
+		render :update do |page|
+			page.replace_html 'individuals_detail', :partial => 'individuals', :object => @house.individuals, :locals => {:house_id => @house.id}
+			page.visual_effect :highlight, "individual_id_#{individual.id}"
+		end
+	end
+	
 	# Method: remove_person
 	# Removes the person with id = params[:person_id] from the house with id = params[:house_id]
 	# Ajax method, returns updated view to the browser.
@@ -71,8 +105,23 @@ class HousesController < ApplicationController
 		@house.people.delete(@person)
 		
 		render :update do |page|
-			#page.replace_html 'house_detail', :partial => 'house', :object => @house
 			page.visual_effect :fade, "house_person_id_#{@person.id}", :duration => 0.25
+			page.replace_html 'house_detail', :partial => 'house', :object => @house
+		end
+	end
+	
+	# Method: remove_individual
+	# Removes, and permanently deletes, the individual with id = params[:individual_id] from the house with id = params[:house_id]
+	# Ajax method, returns updated individual view to the browser
+	def remove_individual
+		@house = House.find(params[:house_id])
+		@individual = Individual.find(params[:individual_id])
+		@house.individuals.delete(@individual)
+		individual_id = @individual.id
+		@individual.destroy
+		render :update do |page|
+			page.visual_effect :fade, "individual_id_#{individual_id}", :duration => 0.25
+			page.replace_html 'individuals_detail', :partial => 'individuals', :object => @house.individuals, :locals => {:house_id => @house.id}
 		end
 	end
 	

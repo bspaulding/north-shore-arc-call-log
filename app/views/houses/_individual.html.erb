@@ -1,0 +1,43 @@
+<% 
+		# This is a hack to get around a variable scoping issue with the in_place_editor plugin.
+		# The plugin's helper does not seem to have access to the partial's local scoping.
+		old_individual = @individual
+		@individual = individual
+%>
+
+<tr id="individual_id_<%= individual.id %>">
+	<td valign="top"><%= individual.name %></td>
+	<td valign="top">
+		<%= in_place_editor_field :individual, 'guardian_name' %><br/><br/>
+		<span style="font-weight:bold;font-size:0.9em;">Home Phone:</span><br/>
+		<%= in_place_editor_field :individual, 'guardian_phone_home' %><br/>
+		<span style="font-weight:bold;font-size:0.9em;">Work Phone:</span><br/>
+		<%= in_place_editor_field :individual, 'guardian_phone_work' %><br/>
+		<span style="font-weight:bold;font-size:0.9em;">Mobile Phone:</span><br/>
+		<%= in_place_editor_field :individual, 'guardian_phone_mobile' %>
+	</td>
+	<td valign="top">
+		<%= in_place_editor_field :individual, 'pcp' %><br/><br/>
+		<span style="font-weight:bold;font-size:0.9em;">Phone:</span><br/>
+		<%= in_place_editor_field :individual, 'pcp_phone_number' %>
+	</td>
+	<td valign="top">
+		<%= in_place_editor_field :individual, 'day_program' %><br/><br/>
+		<span style="font-weight:bold;font-size:0.9em;">Phone:</span><br/>
+		<%= in_place_editor_field :individual, 'day_program_phone' %>
+	</td>
+	<td valign="top">
+		<%= in_place_editor_field :individual, 'transportation' %><br/><br/>
+		<span style="font-weight:bold;font-size:0.9em;">Phone:</span><br/>
+		<%= in_place_editor_field :individual, 'transportation_phone' %>
+	</td>
+	<td valign="top">
+		<%= form_remote_tag :url => url_for(:controller => 'houses', :action => 'remove_individual') %>
+		<%= hidden_field_tag 'house_id', house_id %>
+		<%= hidden_field_tag 'individual_id', individual.id %>
+		<%= submit_tag "Remove", :confirm => "When #{individual.name} is removed from this house, all his/her info will be permanently deleted.\nAre you sure you want to remove this individual?" %>
+		</form>
+	</td>
+</tr>
+
+<% @individual = old_individual %>

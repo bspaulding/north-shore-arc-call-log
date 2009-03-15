@@ -44,7 +44,14 @@
 <%= in_place_editor_field :house, 'behavior_plans', {}, {:rows => 10, :cols => 100} %>
 
 <h3>Individuals</h3>
-<p><b>TODO: Individuals Table, with Ajaxy in page create/add.</b></p>
+<%= form_remote_tag :url => url_for(:action => 'add_individual_to_house') %>
+<%= hidden_field_tag 'house_id', @house.id %>
+<%= text_field_tag 'individual_name' %> <%= submit_tag 'Add Individual' %>
+</form>
+<hr>
+<div id="individuals_detail">
+<%= render :partial => 'individuals', :object => @house.individuals, :locals => {:house_id => @house.id} %>
+</div>
 
 <h3>Phone Numbers</h3>
 <%= in_place_editor_field :house, 'phone_numbers', {}, {:rows => 10, :cols => 100} %>

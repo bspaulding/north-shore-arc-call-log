@@ -1,0 +1,20 @@
+<table>
+	<tr>
+		<th align="left" width="160px">Individual Name</th>
+		<th align="left" width="160px">Guardian</th>
+		<th align="left" width="160px">PCP</th>
+		<th align="left" width="160px">Day Program</th>
+		<th align="left" width="160px">Transportation</th>
+	</tr>
+	
+	<% if individuals.empty? %>
+	<td colspan=5 align="center">
+		<p><em>
+			No individuals are currently on this profile.<br/>
+			Please use the form above to add individuals.
+		</em></p>
+	</td>
+	<% else %>
+		<%= render :partial => 'individual', :collection => individuals, :locals => {:house_id => house_id} %>
+	<% end %>
+</table>
