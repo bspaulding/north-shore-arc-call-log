@@ -1,46 +1,64 @@
 namespace :db do 
+	task :populate_houses => :environment do
+		houses_and_codes = [["Avalon", "229"],
+												["Beverly House", "201"], 
+												["Burlington", "204"],
+												["Cape Ann Women's", "233"], 
+												["Cape Ann Community Residence", "202"], 
+												["Charlie Deleo", "282"],
+												["Clifton Avenue", "243"], 
+												["Collins Street", "272"], 
+												["D/S Men's Coop", "252"],
+												["D/S Women's Coop", "253"], 
+												["Gloucester/Beverly Coop", "251"], 
+												["Gloucester Men's Apartment", "232"],
+												["Hale Street Elders Apartment", "273"], 
+												["Individual Retirement Program", "410"], 
+												["Intervale", "234"],
+												["Lafayette Street", "244"], 
+												["Linden Street", "242"], 
+												["Mason Street", "231"],
+												["Middleton 6", "271"], 
+												["Middleton 4", "270"], 
+												["Peabody House", "241"],
+												["Princeton Street", "261"], 
+												["Lynn Deaf Program", "228"], 
+												["Relief Specialist", "41650-130"],
+												["Rogers Road", "269"], 
+												["Ryan Place", "226"], 
+												["STL", "274"],
+												["Swampscott Women's Apartment", "227"], 
+												["Teresa Bettencourt", "292"], 
+												["Martita Means", "275"],
+												["Debbie Goos", "276"], 
+												["Washington Street", "277"], 
+												["Briana", "278"],
+												["Independent", ""]]
+		House.destroy_all
+		houses_and_codes.each do |house_and_code|
+			House.create!(:name => house_and_code[0],
+										:bu_code => house_and_code[1],
+										:agency_staff => House::DEFAULT_FIELD_TEXT,
+										:overview => House::DEFAULT_FIELD_TEXT,
+										:ratio => House::DEFAULT_FIELD_TEXT,
+										:trainings_needed => House::DEFAULT_FIELD_TEXT,
+										:medication_times => House::DEFAULT_FIELD_TEXT,
+										:waivers => House::DEFAULT_FIELD_TEXT,
+										:keys => House::DEFAULT_FIELD_TEXT,
+										:schedule_info => House::DEFAULT_FIELD_TEXT,
+										:phone_numbers => House::DEFAULT_FIELD_TEXT,
+										:address_street => House::DEFAULT_ADDRESS_STREET,
+										:address_city => House::DEFAULT_ADDRESS_CITY,
+										:address_state => House::DEFAULT_ADDRESS_STATE,
+										:address_zip => House::DEFAULT_ADDRESS_ZIP,
+										:phone_1 => House::DEFAULT_PHONE_1,
+										:phone_2 => House::DEFAULT_PHONE_2,
+										:fax => House::DEFAULT_FAX)
+		end
+	end
+	
 	task :populate_house_fields => :environment do
 		House.all.each do |house|
-			# t.text     "agency_staff"
-			if house.agency_staff.nil?
-				house.agency_staff = House::DEFAULT_FIELD_TEXT
-			end
-			
-	    # t.text     "overview"
-	    if house.overview.nil?
-				house.overview = House::DEFAULT_FIELD_TEXT
-			end
-			
-	    # t.text     "ratio"
-	    if house.ratio.nil?
-				house.ratio = House::DEFAULT_FIELD_TEXT
-			end
-			
-	    # t.text     "trainings_needed"
-	    if house.trainings_needed.nil?
-				house.trainings_needed = House::DEFAULT_FIELD_TEXT
-			end
-			
-	    # t.text     "medication_times"
-	    if house.medication_times.nil?
-				house.medication_times = House::DEFAULT_FIELD_TEXT
-			end
-			
-			# t.text     "waivers"
-	    if house.waivers.nil?
-				house.waivers = House::DEFAULT_FIELD_TEXT
-			end
-			
-			# t.text     "keys"
-	    if house.keys.nil?
-				house.keys = House::DEFAULT_FIELD_TEXT
-			end
-			
-			# t.text     "schedule_info"
-	    if house.schedule_info.nil?
-				house.schedule_info = House::DEFAULT_FIELD_TEXT
-			end
-			
 			# t.text     "phone_numbers"
 	    if house.phone_numbers.nil?
 				house.phone_numbers = House::DEFAULT_FIELD_TEXT
