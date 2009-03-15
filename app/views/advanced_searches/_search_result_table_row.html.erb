@@ -1,0 +1,10 @@
+<tr class="<%= (@index % 2 == 0) ? 'light' : 'dark' %>" id="person_id_<%= search_result_table_row.id %>">
+	<td><%= search_result_table_row.first_name %></td>
+	<td><%= search_result_table_row.last_name %></td>
+	<td><%= search_result_table_row.email_address %></td>
+	<td><%= search_result_table_row.home_phone %></td>
+	<td><%= search_result_table_row.mobile_phone %></td>
+	<td><%= link_to '->', person_path(search_result_table_row) %></td>
+</tr>
+
+<% @index += 1 %>

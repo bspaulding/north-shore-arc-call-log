@@ -12,6 +12,7 @@ namespace :db do
 										:waivers => House::DEFAULT_FIELD_TEXT,
 										:keys => House::DEFAULT_FIELD_TEXT,
 										:schedule_info => House::DEFAULT_FIELD_TEXT,
+										:behavior_plans => House::DEFAULT_FIELD_TEXT,
 										:phone_numbers => House::DEFAULT_FIELD_TEXT,
 										:address_street => House::DEFAULT_ADDRESS_STREET,
 										:address_city => House::DEFAULT_ADDRESS_CITY,

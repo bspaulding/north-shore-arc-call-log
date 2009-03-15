@@ -1,14 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'login'
   
+  map.connect '/advanced_searches/current', :controller => 'advanced_searches', :action => 'current'
+  
   map.resources :database_updates
   map.resources :advanced_searches
   map.resources :houses
   map.resources :individuals
   map.resources :people
-  
-  map.connect '/people/search', :controller => 'people', :action => 'search'
-  map.connect '/people/advanced_search', :controller => 'people', :action => 'advanced_search'
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

@@ -1,0 +1,47 @@
+<% filter_names = [	"gender",
+										"first_name",
+										"last_name",
+										"nickname", 
+										"address_city", 
+										"address_state", 
+										"address_street", 
+										"address_zip", 
+										"email",   
+										"hired_after", 
+										"hired_before", 
+										"home_phone",
+										"mobile_phone"] %>
+
+<% nonempty_filters = filter_names.reject { |attr_name| search_filters[attr_name.to_sym].nil? } %>
+<% empty_filters = filter_names - nonempty_filters %>
+				
+<div id="new_filter_form">
+<div id="filters_title">Add A Filter</div>
+<% form_remote_tag :url => url_for(:action => 'add_filter') do %>
+	<%= hidden_field_tag 'advanced_search_id', search_filters.id %>
+	<table>
+		<tr>
+			<td>
+				<select name="new_filter_name">
+					<%= options_for_select empty_filters.collect { |name| [name.humanize, name] }, empty_filters.first %>
+				</select>
+			</td>
+			<td id="new_filter_form_field">
+				<%= render :partial => 'search_filter_form_field', :object => empty_filters.first %>
+			</td>
+			<td>
+				<%= submit_tag 'Add Filter' %>
+			</td>
+		</tr>
+	</table>
+<% end %>
+</div>
+
+<div id="current_filters">
+<div id="filters_title">Current Filters</div>
+<table width="100%">
+	<%= render 	:partial => 'search_filter', 
+							:collection => nonempty_filters,
+							:locals => {:search => search_filters} %>
+</table>
+</div>

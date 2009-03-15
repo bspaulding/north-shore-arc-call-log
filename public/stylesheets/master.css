@@ -9,6 +9,11 @@ h1 {
 	font-size: 2em;
 }
 
+h4 {
+	padding: 0px;
+	margin: 0px;
+}
+
 p {
 	font-size: 0.9em;
 }
@@ -58,3 +63,67 @@ p {
 	margin: 0px auto;
 	padding: 25px;
 }
+
+table tr.light {
+	background-color: white;
+}
+
+table tr.dark {
+	background-color: #e6e6e6;
+}
+
+#search_filters {
+	padding-bottom: 5px;
+	padding-top: 5px;
+	border-bottom-color: #333333;
+	border-top-color: #333333;
+	border-bottom-style: dotted;
+	border-top-style: dotted;
+	border-bottom-width: 1px;
+	border-top-width: 1px;
+	margin-top: 20px;
+}
+
+#current_filters {
+	margin: 10px;
+	padding: 10px;
+	border-color: #b3b3b3;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #e6e6e6;
+}
+
+#new_filter_form {
+	margin: 10px;
+	padding: 10px;
+	border-color: #b3b3b3;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #e6e6e6;
+}
+
+#filters_title {
+	font-size: 1em;
+	font-weight: bold;
+	border-bottom-width: 1px;
+	border-bottom-color: #b3b3b3;
+	border-bottom-style: dotted;
+}
+
+#current_filters table {
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+#search_results table {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+#search_results table th {
+	border-bottom-color: #b3b3b3;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+

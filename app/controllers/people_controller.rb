@@ -11,25 +11,7 @@ class PeopleController < ApplicationController
       @person = Person.find(params[:id])
     end
   end
-  
-  # Search Page for People
-  def search
-    #if session[:search_id]
-    #  @advanced_search = AdvancedSearch.find(session[:search_id])
-    #else
-    #  @advanced_search = AdvancedSearch.new
-    #end
-    @person = Person.new
-  end
-  
-  def advanced_search
-    if session[:advanced_search_id]
-      @advanced_search = AdvancedSearch.find(session[:advanced_search_id])
-    else
-      @advanced_search = AdvancedSearch.new
-    end
-  end
-  
+    
   def advanced_search_results
     @search = AdvancedSearch.find(session[:advanced_search_id])
     @people = @search.people

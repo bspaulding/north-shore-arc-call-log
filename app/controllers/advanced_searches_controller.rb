@@ -3,6 +3,48 @@
 class AdvancedSearchesController < ApplicationController
   layout 'people'
   
+  # Method: add_filter
+  # Adds a filter to the search with id = params[:advanced_search_id]
+  # Expects: 
+  #  - params[:advanced_search_id], id of AdvancedSearch to update.
+  #  - params[:new_filter_name], attribute name of AdvancedSearch to update.
+  #  - params[:new_filter_value], new value for the given attribute name
+  # Response:
+  # Updates the page elements 'search_filters' and 'search_results'
+  def add_filter
+  	@advanced_search = AdvancedSearch.find(params[:advanced_search_id])
+  	if params[:new_filter_name] == "certifications"
+  		@certification = Certification.find(params[:new_filter_value])
+  		@advanced_search.certifications << @certification
+  	else
+	  	@advanced_search[params[:new_filter_name].to_sym] = params[:new_filter_value]
+	  	@advanced_search.save!
+	  end
+
+	  render :update do |page|
+	  	page.replace_html 'search_filters', :partial => 'search_filters', :object => @advanced_search
+	  	page.replace_html 'search_results', :partial => 'search_results', :object => @advanced_search.people
+	  end
+  end
+  
+  # Method: remove_filter
+  # Removes a filter from the search with id = params[:advanced_search_id]
+  # Expects: 
+  #  - params[:advanced_search_id], id of AdvancedSearch to update.
+  #  - params[:filter_name], attribute name of AdvancedSearch to update.
+  # Response:
+  # Updates the page elements 'search_filters' and 'search_results'
+  def remove_filter
+  	@advanced_search = AdvancedSearch.find(params[:advanced_search_id])
+  	@advanced_search[params[:filter_name].to_sym] = nil
+  	@advanced_search.save!
+  	
+  	render :update do |page|
+	  	page.replace_html 'search_filters', :partial => 'search_filters', :object => @advanced_search
+	  	page.replace_html 'search_results', :partial => 'search_results', :object => @advanced_search.people
+	  end
+  end
+  
   # GET /advanced_searches
   # GET /advanced_searches.xml
   def index
@@ -13,6 +55,16 @@ class AdvancedSearchesController < ApplicationController
       format.xml  { render :xml => @advanced_searches }
     end
   end
+
+	def current
+		if session[:search_id]
+      @advanced_search = AdvancedSearch.find(session[:search_id])
+    else
+      @advanced_search = AdvancedSearch.new
+      @advanced_search.save!
+    end
+    redirect_to @advanced_search
+	end
 
   # GET /advanced_searches/1
   # GET /advanced_searches/1.xml

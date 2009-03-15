@@ -1,27 +1,12 @@
-<%= @people.size %> <%= (@people.size == 1) ? 'result.' : 'results.'%> <%= link_to "Edit Search", edit_advanced_search_url(@advanced_search) %>
+<h1>Staff Search</h1>
 
-<hr>
+<h3>Search Filters</h3>
+<input type="button" onclick="$('search_filters').toggle();" value="Hide/Show Filters"/>
+<div id="search_filters">
+	<%= render :partial => "search_filters", :object => @advanced_search %>
+</div>
 
-<% unless @people.size == 0 %>
-<table>
-	<tr>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Email Address</th>
-		<th>Home Phone</th>
-		<th>Mobile Phone</th>
-	</tr>
-	
-	<% @people.each_with_index do |person, index| %>
-	<tr class="<%= (index % 2 == 0) ? 'light' : 'dark' %>">
-		<td><%= person.first_name %></td>
-		<td><%= person.last_name %></td>
-		<td><%= person.email_address %></td>
-		<td><%= person.home_phone %></td>
-		<td><%= person.mobile_phone %></td>
-		<td><%= link_to '->', person_path(person) %></td>
-	</tr>
-	<% end %>
-</table>
-
-<% end %>
+<h3>Results</h3>
+<div id="search_results">
+	<%= render :partial => "search_results", :object => @people %>
+</div>

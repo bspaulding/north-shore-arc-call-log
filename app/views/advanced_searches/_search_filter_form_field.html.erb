@@ -1,0 +1,9 @@
+<% if search_filter_form_field == "gender" %>
+	is <select name="new_filter_value">
+		<%= options_for_select ["male","female"] %>
+	</select>
+<% elsif search_filter_form_field == "certifications" %>
+	includes <%= form.select :certificatins, Certification.all %>
+<% else %>
+	is like <%= text_field_tag "new_filter_value" %>
+<% end %>

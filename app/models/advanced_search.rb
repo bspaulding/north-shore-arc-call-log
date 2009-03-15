@@ -2,6 +2,8 @@
 # => Purpose: Encapsulate a complicated people search query
 #             in order to more efficiently handle searching.
 class AdvancedSearch < ActiveRecord::Base
+  # Associations
+  has_and_belongs_to_many :certifications
   
   # This is the entry point for searches to be performed. 
   # Returns: An array of Person objects as the results of this query.
@@ -36,7 +38,7 @@ class AdvancedSearch < ActiveRecord::Base
   end
 
   def gender_conditions
-    ["people.gender = ?", "%#{email}%"] unless gender.blank?
+    ["gender = ?", gender] unless gender.blank?
   end
 
   def home_phone_conditions

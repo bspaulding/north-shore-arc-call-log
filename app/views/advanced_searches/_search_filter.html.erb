@@ -1,0 +1,19 @@
+<tr>
+	<th align="right"><%= search_filter.humanize %></th>
+	<td>
+		<% if search_filter == "gender" -%>
+		is "<%= search[:gender] %>"
+		<% elsif search_filter == "certifications" -%>
+		includes "<%= search.certifications.collect {|cert| cert.name}.join(', ') %>"
+		<% else -%>
+		is like "<%= search[search_filter.to_sym] %>"
+		<% end -%>
+	</td>
+	<td align="right">
+		<% form_remote_tag :url => url_for(:action => 'remove_filter') do -%>
+			<%= hidden_field_tag 'advanced_search_id', search.id %>
+			<%= hidden_field_tag 'filter_name', search_filter %>
+			<%= submit_tag "Remove Filter" %>
+		<% end -%>
+	</td>
+</tr>

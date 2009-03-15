@@ -8,3 +8,15 @@
 #   inflect.irregular 'person', 'people'
 #   inflect.uncountable %w( fish sheep )
 # end
+
+ActiveSupport::Inflector.inflections do |inflect|
+	#inflect.human 'address_street', "Street address"
+	#inflect.human 'address_city', "City"
+	#inflect.human 'address_state', "State"
+	#inflect.human 'address_zip', "Zip Code"
+	
+	inflect.human "address_street", "Address (Street)"
+	inflect.human "address_city", "Address (City)"
+	inflect.human "address_state", "Address (State)"
+	inflect.human "address_zip", "Address (Zip Code)"
+end
