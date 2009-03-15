@@ -1,41 +1,7 @@
 namespace :db do 
 	task :populate_houses => :environment do
-		houses_and_codes = [["Avalon", "229"],
-												["Beverly House", "201"], 
-												["Burlington", "204"],
-												["Cape Ann Women's", "233"], 
-												["Cape Ann Community Residence", "202"], 
-												["Charlie Deleo", "282"],
-												["Clifton Avenue", "243"], 
-												["Collins Street", "272"], 
-												["D/S Men's Coop", "252"],
-												["D/S Women's Coop", "253"], 
-												["Gloucester/Beverly Coop", "251"], 
-												["Gloucester Men's Apartment", "232"],
-												["Hale Street Elders Apartment", "273"], 
-												["Individual Retirement Program", "410"], 
-												["Intervale", "234"],
-												["Lafayette Street", "244"], 
-												["Linden Street", "242"], 
-												["Mason Street", "231"],
-												["Middleton 6", "271"], 
-												["Middleton 4", "270"], 
-												["Peabody House", "241"],
-												["Princeton Street", "261"], 
-												["Lynn Deaf Program", "228"], 
-												["Relief Specialist", "41650-130"],
-												["Rogers Road", "269"], 
-												["Ryan Place", "226"], 
-												["STL", "274"],
-												["Swampscott Women's Apartment", "227"], 
-												["Teresa Bettencourt", "292"], 
-												["Martita Means", "275"],
-												["Debbie Goos", "276"], 
-												["Washington Street", "277"], 
-												["Briana", "278"],
-												["Independent", ""]]
 		House.destroy_all
-		houses_and_codes.each do |house_and_code|
+		House::DEFAULT_HOUSES_AND_CODES.each do |house_and_code|
 			House.create!(:name => house_and_code[0],
 										:bu_code => house_and_code[1],
 										:agency_staff => House::DEFAULT_FIELD_TEXT,
@@ -56,53 +22,7 @@ namespace :db do
 										:fax => House::DEFAULT_FAX)
 		end
 	end
-	
-	task :populate_house_fields => :environment do
-		House.all.each do |house|
-			# t.text     "phone_numbers"
-	    if house.phone_numbers.nil?
-				house.phone_numbers = House::DEFAULT_FIELD_TEXT
-			end
-			
-			# t.string   "address_street"
-	    if house.address_street.nil?
-				house.address_street = House::DEFAULT_ADDRESS_STREET
-			end
-			
-			# t.string   "address_city"
-	    if house.address_city.nil?
-				house.address_city = House::DEFAULT_ADDRESS_CITY
-			end
-			
-			# t.string   "address_state"
-	    if house.address_state.nil?
-				house.address_state = House::DEFAULT_ADDRESS_STATE
-			end
-			
-			# t.string   "address_zip"
-	    if house.address_zip.nil?
-				house.address_zip = House::DEFAULT_ADDRESS_ZIP
-			end
-			
-			# t.string   "phone_1"
-	    if house.phone_1.nil?
-				house.phone_1 = House::DEFAULT_PHONE_1
-			end
-			
-			# t.string   "phone_2"
-	    if house.phone_2.nil?
-				house.phone_2 = House::DEFAULT_PHONE_2
-			end
-			
-			# t.string   "fax"
-			if house.fax.nil?
-				house.fax = House::DEFAULT_FAX
-			end
-			
-			house.save!
-		end
-	end
-	
+		
 	task :populate_positions => :environment do
 		positions = [	"House Director", "Asst. Div. Director", "Clinical Manager", "Asst. House Director",
 									"House Manager", "Awake Overnight", "Relief", "Heritage Specialty", "Middleton 4"]
@@ -113,7 +33,7 @@ namespace :db do
 		end
 	end
 	
-  task :populate => :environment do 
+  task :populate_with_fake_people => :environment do 
     require 'populator'
     require 'faker'
     

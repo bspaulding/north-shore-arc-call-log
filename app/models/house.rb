@@ -9,6 +9,41 @@ class House < ActiveRecord::Base
 	DEFAULT_PHONE_2 = "Click To Add Phone #2"
 	DEFAULT_FAX = "Click To Add A Fax Number"
 	
+	DEFAULT_HOUSES_AND_CODES = [["Avalon", "229"],
+															["Beverly House", "201"], 
+															["Burlington", "204"],
+															["Cape Ann Women's", "233"], 
+															["Cape Ann Community Residence", "202"], 
+															["Charlie Deleo", "282"],
+															["Clifton Avenue", "243"], 
+															["Collins Street", "272"], 
+															["D/S Men's Coop", "252"],
+															["D/S Women's Coop", "253"], 
+															["Gloucester/Beverly Coop", "251"], 
+															["Gloucester Men's Apartment", "232"],
+															["Hale Street Elders Apartment", "273"], 
+															["Individual Retirement Program", "410"], 
+															["Intervale", "234"],
+															["Lafayette Street", "244"], 
+															["Linden Street", "242"], 
+															["Mason Street", "231"],
+															["Middleton 6", "271"], 
+															["Middleton 4", "270"], 
+															["Peabody House", "241"],
+															["Princeton Street", "261"], 
+															["Lynn Deaf Program", "228"], 
+															["Relief Specialist", "41650-130"],
+															["Rogers Road", "269"], 
+															["Ryan Place", "226"], 
+															["STL", "274"],
+															["Swampscott Women's Apartment", "227"], 
+															["Teresa Bettencourt", "292"], 
+															["Martita Means", "275"],
+															["Debbie Goos", "276"], 
+															["Washington Street", "277"], 
+															["Briana", "278"],
+															["Independent", ""]]
+	
 	# Associations:
 	has_and_belongs_to_many :people, :order => "last_name,first_name ASC"
 	has_and_belongs_to_many :individuals
