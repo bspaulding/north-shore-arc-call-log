@@ -2,6 +2,8 @@
 # Author: Bradley J. Spaulding
 # Purpose: Handles all requests for the DatabaseUpdate resource, all routes under /database_updates
 class DatabaseUpdatesController < ApplicationController
+	layout 'people'
+
   # Route: /database_updates (GET)
   # Purpose: renders a list of all database updates, newest first
   def index

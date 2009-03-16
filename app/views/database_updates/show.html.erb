@@ -1,15 +1,9 @@
-<h1>Database Update</h1>
+<div id="update_summary">
 <p>
-	Date: <%= @update.created_at %>
+	Database Updated on <%= @update.created_at.strftime("%B %d, %Y at %I:%M %p") %>.
 </p>
 
-<p>
-	Spreadsheet Path:<br/>
-	<%= @update.spreadsheet_path %>
-</p>
-
-<h2>Changes</h2>
-
+<hr/>
 
 <% unless @update.changes[:created].size == 0 %>
 <h3>Created</h3>
@@ -24,7 +18,7 @@
 <h3>Updated</h3>
 <p>
 <% @update.changes[:updated].each do |change| %>
-Updated <%= Person.find(change[0]).name %>'s <%= change[1] %> from <%= change[2] %> to <%= change[3] %><br/>
+<%= Person.find(change[0]).name %>'s <%= change[1] %> from <%= change[2] %> to <%= change[3] %><br/>
 <% end %>
 </p>
 <% end %>
@@ -37,3 +31,8 @@ Updated <%= Person.find(change[0]).name %>'s <%= change[1] %> from <%= change[2]
 <% end %>
 </p>
 <% end %>
+</div>
+
+<div align="center">
+	<%= link_to "Continue -->", url_for(:controller => 'supervisor', :action => 'index') %>
+</div>
