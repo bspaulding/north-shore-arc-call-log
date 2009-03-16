@@ -12,8 +12,13 @@
 <div id="wrapper">
 	<div align="center"><img src="/images/nsarc_logo.gif"></div>
 	
-	<p style="color: green"><%= flash[:notice] %></p>
-
+	<% if session[:user_id] %>
+		<div align="right"><%= link_to 'Logout', url_for(:controller => 'login', :action => 'logout') %></div>
+	<% end %>
+	
+	<% if flash[:error] %><p style="color: green"><%= flash[:notice] %></p><% end %>
+	<% if flash[:error] %><div id="flash_error"><%= flash[:error] %></div><% end %>
+	
 	<%= yield  %>
 </div>
 </body>

@@ -33,16 +33,13 @@
 <%= @person.address_street %><br/>
 <%= @person.address_city %>, <%= @person.address_state %> <%= @person.address_zip %>
 </p>
-</div>
-
-<br/>
-<hr>
 
 <p>
 <b>Certifications</b><br/>
 <% @person.persons_certifications.each do |pc| %>
-<%= pc.certification.name %> - <em><%= pc.expiration_date.strftime("%B %d, %Y") %></em><br/>
+<%= pc.certification.name %> - <em><%= pc.expiration_date.strftime("%B %d, %Y") unless pc.expiration_date.nil? %></em><br/>
 <% end %>
 </p>
+</div>
 
 </div>

@@ -14,11 +14,7 @@
 
 <div align="center">
 	<p><%= submit_tag "Login" %></p>
+	<p><b>First Time Users:</b><br/><%= link_to "Setup Your Account", url_for(:action => 'register') %></p>
 </div>
 </div>
 <% end -%>
-
-<p><em>
-<% unless Supervisor.all.size == 0 %>Supervisor: <%= Supervisor.first.email_address %><br/><% end %>
-<% unless DirectCareProvider.all.size == 0 %>DirectCare: <%= DirectCareProvider.first.email_address %><% end %>
-</em></p>

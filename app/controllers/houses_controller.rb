@@ -1,4 +1,6 @@
 class HousesController < ApplicationController
+	before_filter :authenticate, :authorize
+	
 	# In Place Editors
 	# -> Allows in place editing for the specified fields
 	in_place_edit_for :house, :agency_staff

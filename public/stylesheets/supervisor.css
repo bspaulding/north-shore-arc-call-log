@@ -5,12 +5,12 @@
 }
 
 #staff_section_box {
-	float: left;
-	
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url(/images/staff.jpg);
 	width: 300px;
-	height: 300px;
-	
-	border: 1px solid #000;
+	float: left;
+	height: 200px;
 	
 	margin-right: 10px;
 	
@@ -23,17 +23,20 @@
 }
 
 #staff_section_box:hover {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url(/images/staff_hover.jpg);
 	text-decoration:none;
-	background: #EEE;
 }
 
 #houses_section_box {
+	background-position: center;
+	background-image: url(/images/houses.jpg);
+	background-repeat: no-repeat;
 	float: left;
 	
 	width: 300px;
-	height: 300px;
-	
-	border: 1px solid #000;
+	height: 200px;
 	
 	margin-left: 10px;
 	
@@ -46,6 +49,8 @@
 }
 
 #houses_section_box:hover {
+	background-position: center;
+	background-image: url(/images/houses_hover.jpg);
+	background-repeat: no-repeat;
 	text-decoration:none;
-	background: #EEE;
 }

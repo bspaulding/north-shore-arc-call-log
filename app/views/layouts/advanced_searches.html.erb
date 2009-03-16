@@ -9,6 +9,10 @@
 </head>
 <body>
 
+	<% if session[:user_id] %>
+		<div align="right"><%= link_to 'Logout', url_for(:controller => 'login', :action => 'logout') %></div>
+	<% end %>
+
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield  %>

@@ -3,6 +3,8 @@
 class AdvancedSearchesController < ApplicationController
   layout 'people'
 	
+	before_filter :authenticate, :authorize
+	
 	# Constants
 	FILTER_NAMES = [	"gender",
 										"certifications",

@@ -3,6 +3,8 @@
 # Purpose: Handles all requests for the DatabaseUpdate resource, all routes under /database_updates
 class DatabaseUpdatesController < ApplicationController
 	layout 'people'
+	
+	before_filter :authenticate, :authorize
 
   # Route: /database_updates (GET)
   # Purpose: renders a list of all database updates, newest first

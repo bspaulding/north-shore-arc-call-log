@@ -15,4 +15,18 @@ class ApplicationController < ActionController::Base
   
   # Load parseexcel
   require 'parseexcel'
+  
+  # Verify the user, or force a login
+  def authenticate
+  	unless session[:user_id]
+  		session[:intended_controller] = controller_name
+  		session[:intended_action] = action_name
+	  	redirect_to :controller => 'login', :action => 'index'
+	  end
+  end
+  
+  # Check the current user's authorization for their desired action
+  def authorize
+  	return true # STUB
+  end
 end

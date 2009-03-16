@@ -1,16 +1,32 @@
+require 'digest/sha2'
 class Person < ActiveRecord::Base
+  # Associations
   has_many :persons_certifications
   has_many :certifications, :through => :persons_certifications
-  
   has_and_belongs_to_many :houses
   
+  # Scopes
   named_scope :with_hrid, lambda { |hrid| { :conditions => { :hrid => hrid } } }
   named_scope :from_bu, lambda { |bu_code| { :conditions => {:bu_code => bu_code } } }
-#  named_scope :with_certifications, lambda { |certifications| {
-#      
-#  } }
-# TODO: Handle with_certifications named_scope, should take an array of certifications a candidate must have
-  
+
+	# Validations
+	validates_uniqueness_of :email_address
+
+	# Authentication Code
+	def self.authenticate(email_address, password)
+		person = Person.find(:first, :conditions => {:email_address => email_address})
+		if person.blank? || Digest::SHA256.hexdigest(password + person.password_salt) != person.password_hash
+			raise "Invalid Username or Password"
+		end
+		person
+	end
+	
+	def password=(new_password)
+		salt = [Array.new(6){rand(256).chr}.join].pack("m").chomp
+		self.password_salt, self.password_hash = salt, Digest::SHA256.hexdigest(new_password + salt)
+	end
+	
+  # Virtual Getter/Setter for 'name'
   def name
     "#{first_name} #{last_name}"
   end

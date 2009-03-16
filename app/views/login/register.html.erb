@@ -1,0 +1,18 @@
+<h1>Account Setup</h1>
+<%= form_tag url_for(:action => 'new_user_setup', :method => :post) %>
+<div style="width:325px;;margin: 0px auto;border:0px solid #000;">
+<p><b>Email Address</b><br/>
+	<input type="text" name="email_address" size="30" style="padding:5px;font-family:verdana;font-size:1.2em;">
+</p>
+
+<p><b>Password</b><br/>
+	<input type="password" name="password" size="30" style="padding:5px;font-family:verdana;font-size:1.2em;">
+</p>
+
+<p><b>Password (Confirm)</b><br/>
+	<input type="password" name="password_confirm" size="30" style="padding:5px;font-family:verdana;font-size:1.2em;">
+</p>
+<div align="center">
+<%= submit_tag "Register" %>
+</div>
+</form>

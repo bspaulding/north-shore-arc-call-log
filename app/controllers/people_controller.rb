@@ -1,4 +1,6 @@
 class PeopleController < ApplicationController
+	before_filter :authenticate, :authorize
+	
   # Shows a Person's profile
   # Expected Params:
   # => TODO
