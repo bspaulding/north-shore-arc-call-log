@@ -1,3 +1,6 @@
+<h3>Directors</h3>
+<input type="button" onclick="$('directors').toggle();" value="Hide/Show"/>
+<div id="directors">
 <table>
 	<tr>
 		<th align="left" width="200px">Name</th>
@@ -10,8 +13,11 @@
 	<%= render :partial => "house_person_table_row", :collection => house.clinical_managers, :locals => {:house_id => house.id} %>
 	<%= render :partial => "house_person_table_row", :collection => house.asst_house_managers, :locals => {:house_id => house.id} %>
 </table>
+</div>
 
 <h3>House Managers</h3>
+<input type="button" onclick="$('house_managers').toggle();" value="Hide/Show"/>
+<div id="house_managers">
 <table>
 	<tr>
 		<th align="left" width="200px">Name</th>
@@ -32,8 +38,11 @@
 		<%= render :partial => "house_person_table_row", :collection => house.house_managers, :locals => {:house_id => house.id} %>
 	<% end %>
 </table>
+</div>
 
 <h3>Overnight Managers</h3>
+<input type="button" onclick="$('overnight_staff').toggle();" value="Hide/Show"/>
+<div id="overnight_staff">
 <table>
 	<tr>
 		<th align="left" width="200px">Name</th>
@@ -55,8 +64,11 @@
 		<%= render :partial => "house_person_table_row", :collection => house.awake_overnights, :locals => {:house_id => house.id} %>
 	<% end %>
 </table>
+</div>
 
 <h3>Relief Staff</h3>
+<input type="button" onclick="$('relief_staff').toggle();" value="Hide/Show"/>
+<div id="relief_staff">
 <table>
 	<tr>
 		<th align="left" width="200px">Name</th>
@@ -79,8 +91,11 @@
 	<% end %>
 	</tr>
 </table>
+</div>
 
 <h3>Overtime Staff</h3>
+<input type="button" onclick="$('overtime_staff').toggle();" value="Hide/Show"/>
+<div id="overtime_staff">
 <table>
 	<tr>
 		<th align="left" width="200px">Name</th>
@@ -103,3 +118,4 @@
 	<% end %>
 	</tr>
 </table>
+</div>

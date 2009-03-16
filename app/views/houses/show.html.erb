@@ -17,33 +17,62 @@
 </div>
 
 <h3>Agency Staff</h3>
+<input type="button" onclick="$('agency_staff').toggle();" value="Hide/Show"/>
+<div id="agency_staff">
 <%= in_place_editor_field :house, 'agency_staff', {}, {:rows => 10, :cols => 100} %>
+</div>
 
 <h3>Overview</h3>
+<input type="button" onclick="$('overview').toggle();" value="Hide/Show"/>
+<div id="overview">
 <%= in_place_editor_field :house, 'overview', {}, {:rows => 10, :cols => 100} %>
+</div>
 
 <h3>Ratio</h3>
+<input type="button" onclick="$('ratio').toggle();" value="Hide/Show"/>
+<div id="ratio">
 <%= in_place_editor_field :house, 'ratio', {}, {:rows => 10, :cols => 100} %>
+</div>
 
 <h3>Trainings Needed</h3>
+<input type="button" onclick="$('trainings_needed').toggle();" value="Hide/Show"/>
+<div id="trainings_needed">
 <%= in_place_editor_field :house, 'trainings_needed', {}, {:rows => 10, :cols => 100} %>
+</div>
 
 <h3>Medication Times</h3>
+<input type="button" onclick="$('medication_times').toggle();" value="Hide/Show"/>
+<div id="medication_times">
 <%= in_place_editor_field :house, 'medication_times', {}, {:rows => 10, :cols => 100} %>
+</div>
 
 <h3>Waivers</h3>
+<input type="button" onclick="$('waivers').toggle();" value="Hide/Show"/>
+<div id="waivers">
 <%= in_place_editor_field :house, 'waivers', {}, {:rows => 10, :cols => 100} %>
+</div>
 
 <h3>Keys</h3>
+<input type="button" onclick="$('keys').toggle();" value="Hide/Show"/>
+<div id="keys">
 <%= in_place_editor_field :house, 'keys', {}, {:rows => 10, :cols => 100} %>
+</div>
 
 <h3>Schedule Info</h3>
+<input type="button" onclick="$('schedule_info').toggle();" value="Hide/Show"/>
+<div id="schedule_info">
 <%= in_place_editor_field :house, 'schedule_info', {}, {:rows => 10, :cols => 100} %>
+</div>
 
 <h3>Behavior Plans</h3>
+<input type="button" onclick="$('behavior_plans').toggle();" value="Hide/Show"/>
+<div id="behavior_plans">
 <%= in_place_editor_field :house, 'behavior_plans', {}, {:rows => 10, :cols => 100} %>
+</div>
 
 <h3>Individuals</h3>
+<input type="button" onclick="$('individuals').toggle();" value="Hide/Show"/>
+<div id="individuals">
 <%= form_remote_tag :url => url_for(:action => 'add_individual_to_house') %>
 <%= hidden_field_tag 'house_id', @house.id %>
 <%= text_field_tag 'individual_name' %> <%= submit_tag 'Add Individual' %>
@@ -52,6 +81,10 @@
 <div id="individuals_detail">
 <%= render :partial => 'individuals', :object => @house.individuals, :locals => {:house_id => @house.id} %>
 </div>
+</div>
 
 <h3>Phone Numbers</h3>
+<input type="button" onclick="$('phone_numbers').toggle();" value="Hide/Show"/>
+<div id="phone_numbers">
 <%= in_place_editor_field :house, 'phone_numbers', {}, {:rows => 10, :cols => 100} %>
+</div>
