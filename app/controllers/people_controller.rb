@@ -3,14 +3,12 @@ class PeopleController < ApplicationController
 	
   # Shows a Person's profile
   # Expected Params:
-  # => TODO
   def show
-    @person = Person.find(session[:user_id])
-    # => TODO explain.
-    if @person.class == DirectCareProvider && (session[:user_id].to_i != params[:id].to_i)
+  	@person = Person.find(params[:id])
+  	active_person = Person.find(session[:user_id])
+    if active_person.roles.collect {|role| role.name} == ["DirectCareProvider"] && session[:user_id] != params[:id]
       flash[:notice] = "You can only access your own profile."
-    else
-      @person = Person.find(params[:id])
+      @person = active_person
     end
   end
     

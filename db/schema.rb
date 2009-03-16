@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090316063931) do
+ActiveRecord::Schema.define(:version => 20090316124733) do
 
   create_table "advanced_searches", :force => true do |t|
     t.string   "first_name"
@@ -124,10 +124,34 @@ ActiveRecord::Schema.define(:version => 20090316063931) do
     t.string   "password_hash"
   end
 
+  create_table "people_roles", :id => false, :force => true do |t|
+    t.integer "person_id"
+    t.integer "role_id"
+  end
+
   create_table "persons_certifications", :force => true do |t|
     t.integer  "certification_id"
     t.integer  "person_id"
     t.datetime "expiration_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rights", :force => true do |t|
+    t.string   "name"
+    t.string   "controller"
+    t.string   "action"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rights_roles", :id => false, :force => true do |t|
+    t.integer "right_id"
+    t.integer "role_id"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

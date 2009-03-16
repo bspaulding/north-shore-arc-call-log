@@ -4,6 +4,7 @@ class Person < ActiveRecord::Base
   has_many :persons_certifications
   has_many :certifications, :through => :persons_certifications
   has_and_belongs_to_many :houses
+  has_and_belongs_to_many :roles
   
   # Scopes
   named_scope :with_hrid, lambda { |hrid| { :conditions => { :hrid => hrid } } }
@@ -15,8 +16,8 @@ class Person < ActiveRecord::Base
 	# Authentication Code
 	def self.authenticate(email_address, password)
 		person = Person.find(:first, :conditions => {:email_address => email_address})
-		if person.blank? || Digest::SHA256.hexdigest(password + person.password_salt) != person.password_hash
-			raise "Invalid Username or Password"
+		if person.blank? || password.blank? || person.password_salt.blank? || Digest::SHA256.hexdigest(password + person.password_salt) != person.password_hash
+			raise CallLogExceptions::InvalidUser
 		end
 		person
 	end

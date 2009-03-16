@@ -12,7 +12,7 @@ class LoginController < ApplicationController
     	begin
 	      session[:user_id] = Person.authenticate(params[:email_address], params[:password]).id
 				redirect_to home_url(@person)
-			rescue
+			rescue CallLogExceptions::InvalidUser
 				flash[:error] = "Invalid Username or Password"
 				redirect_to :controller => 'login', :action => 'index'
 			end
@@ -44,9 +44,5 @@ class LoginController < ApplicationController
   	session[:user_id] = nil
   	flash[:notice] = "You have successfully logged out."
   	redirect_to :action => 'index'
-  end
-  
-  def home_url(person)
-  	url_for(person)
   end
 end
