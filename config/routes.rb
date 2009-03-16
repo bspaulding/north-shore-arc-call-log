@@ -1,8 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'login'
   
-  map.connect '/advanced_searches/current', :controller => 'advanced_searches', :action => 'current'
-  
   map.resources :database_updates
   map.resources :advanced_searches
   map.resources :houses

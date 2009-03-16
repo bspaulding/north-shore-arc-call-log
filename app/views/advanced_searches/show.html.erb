@@ -3,7 +3,8 @@
 <h3>Search Filters</h3>
 <input type="button" onclick="$('search_filters').toggle();" value="Hide/Show Filters"/>
 <div id="search_filters">
-	<%= render :partial => "search_filters", :object => @advanced_search %>
+	<%= render	:partial => "search_filters", 
+							:object => @advanced_search %>
 </div>
 
 <h3>Results</h3>

@@ -2,6 +2,22 @@
 # Purpose: Handles CRUD for the AdvancedSearch Model.
 class AdvancedSearchesController < ApplicationController
   layout 'people'
+	
+	# Constants
+	FILTER_NAMES = [	"gender",
+										"certifications",
+										"first_name",
+										"last_name",
+										"nickname", 
+										"address_city", 
+										"address_state", 
+										"address_street", 
+										"address_zip", 
+										"email",   
+										"hired_after", 
+										"hired_before", 
+										"home_phone",
+										"mobile_phone"]
   
   # Method: add_filter
   # Adds a filter to the search with id = params[:advanced_search_id]
@@ -16,10 +32,23 @@ class AdvancedSearchesController < ApplicationController
   	if params[:new_filter_name] == "certifications"
   		@certification = Certification.find(params[:new_filter_value])
   		@advanced_search.certifications << @certification
+  	elsif params[:new_filter_name] == "hired_before" || params[:new_filter_name] == "hired_after"
+  		date = Date.civil(	params[:new_filter_value][:"date(1i)"].to_i, 
+  												params[:new_filter_value][:"date(2i)"].to_i, 
+  												params[:new_filter_value][:"date(3i)"].to_i)
+  		@advanced_search[params[:new_filter_name].to_sym] = date
+	  	@advanced_search.save!
   	else
+  		params[:new_filter_value].gsub!(/[^0-9]/, '') if params[:new_filter_name] == "home_phone" || params[:new_filter_name] == "mobile_phone"
+  		
 	  	@advanced_search[params[:new_filter_name].to_sym] = params[:new_filter_value]
 	  	@advanced_search.save!
 	  end
+
+		@nonempty_filters = FILTER_NAMES.reject { |attr_name| @advanced_search[attr_name.to_sym].nil? unless attr_name == "certifications" } 
+	 	@nonempty_filters.delete("certifications") if @advanced_search.certifications.empty?
+		@empty_filters = FILTER_NAMES - @nonempty_filters
+	 	@empty_filters.insert(0, "certifications") unless @advanced_search.certifications == Certification.all #=> This line isn't needed now that we're in the controller!
 
 	  render :update do |page|
 	  	page.replace_html 'search_filters', :partial => 'search_filters', :object => @advanced_search
@@ -36,8 +65,16 @@ class AdvancedSearchesController < ApplicationController
   # Updates the page elements 'search_filters' and 'search_results'
   def remove_filter
   	@advanced_search = AdvancedSearch.find(params[:advanced_search_id])
-  	@advanced_search[params[:filter_name].to_sym] = nil
-  	@advanced_search.save!
+  	if params[:filter_name] == "certifications"
+  		@advanced_search.certifications.delete_all
+  	else
+	  	@advanced_search[params[:filter_name].to_sym] = nil
+	  	@advanced_search.save!
+		end
+  	
+  	@nonempty_filters = FILTER_NAMES.reject { |attr_name| @advanced_search[attr_name.to_sym].nil? unless attr_name == "certifications" } 
+	 	@nonempty_filters.delete("certifications") if @advanced_search.certifications.empty?
+		@empty_filters = FILTER_NAMES - @nonempty_filters
   	
   	render :update do |page|
 	  	page.replace_html 'search_filters', :partial => 'search_filters', :object => @advanced_search
@@ -45,32 +82,36 @@ class AdvancedSearchesController < ApplicationController
 	  end
   end
   
-  # GET /advanced_searches
-  # GET /advanced_searches.xml
-  def index
-    @advanced_searches = AdvancedSearch.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @advanced_searches }
-    end
+  # Method: update_new_filter_type
+  # Renders the new form for the newly selected filter type in the browser
+  def update_new_filter_type
+  	@advanced_search = AdvancedSearch.find(params[:advanced_search_id])
+	 	
+	 	render :partial => 'search_filter_form_field', :object => params[:filter_name], :locals => {:search => @advanced_search}
   end
-
-	def current
-		if session[:search_id]
+  
+  # GET /advanced_searches
+  def index
+    if session[:search_id]
       @advanced_search = AdvancedSearch.find(session[:search_id])
     else
       @advanced_search = AdvancedSearch.new
       @advanced_search.save!
+      session[:search_id] = @advanced_search.id
     end
     redirect_to @advanced_search
-	end
+  end
 
   # GET /advanced_searches/1
   # GET /advanced_searches/1.xml
   def show
     @advanced_search = AdvancedSearch.find(params[:id])
     @people = @advanced_search.people
+    
+    @nonempty_filters = FILTER_NAMES.reject { |attr_name| @advanced_search[attr_name.to_sym].nil? unless attr_name == "certifications" } 
+	 	@nonempty_filters.delete("certifications") if @advanced_search.certifications.empty?
+		@empty_filters = FILTER_NAMES - @nonempty_filters
+	 	#@empty_filters.insert(0, "certifications") unless @advanced_search.certifications == Certification.all
     
     respond_to do |format|
       format.html # show.html.erb

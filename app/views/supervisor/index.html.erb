@@ -9,6 +9,6 @@
 	<p><em>The database was last updated on <%= DatabaseUpdate.first(:order => "created_at DESC").created_at.strftime("%A %B %d, at %I:%M %p") %>.</em></p>
 <% end %>
 <hr>
-	<a href="/people/search"><div id="staff_section_box">Staff</div></a>
+	<a href="/advanced_searches"><div id="staff_section_box">Staff</div></a>
 	<a href="/houses"><div id="houses_section_box">Houses</div></a>
 </div>

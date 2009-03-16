@@ -3,7 +3,11 @@
 		<%= options_for_select ["male","female"] %>
 	</select>
 <% elsif search_filter_form_field == "certifications" %>
-	includes <%= form.select :certificatins, Certification.all %>
+	include <select name="new_filter_value">
+		<%= options_for_select Certification.all.reject { |cert| search.certifications.member?(cert) }.collect { |cert| [cert.name, cert.id] } %>
+	</select>
+<% elsif search_filter_form_field == "hired_before" || search_filter_form_field == "hired_after" %>
+	<%= date_select 'new_filter_value', 'date', :order => [:month, :day, :year] %>
 <% else %>
 	is like <%= text_field_tag "new_filter_value" %>
 <% end %>

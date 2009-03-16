@@ -5,6 +5,8 @@
 		is "<%= search[:gender] %>"
 		<% elsif search_filter == "certifications" -%>
 		includes "<%= search.certifications.collect {|cert| cert.name}.join(', ') %>"
+		<% elsif search_filter == "hired_before" || search_filter == "hired_after" -%>
+		<%= search[search_filter.to_sym].strftime("%B %d, %Y") %>
 		<% else -%>
 		is like "<%= search[search_filter.to_sym] %>"
 		<% end -%>

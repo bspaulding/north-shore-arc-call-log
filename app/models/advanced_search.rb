@@ -16,7 +16,7 @@ class AdvancedSearch < ActiveRecord::Base
   
   # Initiates the find, conditions calls the conditions method
   def find_people
-    Person.find(:all, :conditions => conditions)
+  	Person.find(:all, :conditions => conditions)
   end
   
   # Note: All methods suffixed with '_conditions' return 
@@ -66,12 +66,22 @@ class AdvancedSearch < ActiveRecord::Base
   end
 
   def hired_before_conditions
-    ["people.doh >= ?", hired_before] unless hired_before.blank? || hired_before == hired_after
+    ["people.doh >= ?", hired_before] unless hired_before.blank?
   end
 
   def hired_after_conditions
-    ["people.doh <= ?", hired_after] unless hired_after.blank? || hired_before == hired_after
+    ["people.doh <= ?", hired_after] unless hired_after.blank?
   end
+
+	def certifications_conditions
+		unless certifications.empty?
+			selects = []
+			certifications.each do |cert|
+				selects.push "select person_id from persons_certifications where certification_id = #{cert.id}"
+			end
+			["id IN (#{selects.join(' INTERSECT ')})"]
+		end
+	end
 
   # Conditions: returns an array of all the SQL conditional clauses
   #             for this query. The last three conditions_* methods are helpers.

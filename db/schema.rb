@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090315045643) do
+ActiveRecord::Schema.define(:version => 20090315231313) do
 
   create_table "advanced_searches", :force => true do |t|
     t.string   "first_name"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20090315045643) do
     t.string   "gender"
   end
 
-  create_table "advanced_searches_certifications", :force => true do |t|
+  create_table "advanced_searches_certifications", :id => false, :force => true do |t|
     t.integer "advanced_search_id"
     t.integer "certification_id"
   end
