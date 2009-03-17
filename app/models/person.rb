@@ -6,6 +6,8 @@ class Person < ActiveRecord::Base
   has_and_belongs_to_many :houses
   has_and_belongs_to_many :roles
   
+  file_column :image
+  
   # Scopes
   named_scope :with_hrid, lambda { |hrid| { :conditions => { :hrid => hrid } } }
   named_scope :from_bu, lambda { |bu_code| { :conditions => {:bu_code => bu_code } } }

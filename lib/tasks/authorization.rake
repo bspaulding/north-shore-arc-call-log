@@ -22,6 +22,9 @@ task :set_default_authorizations => :environment do
 															:controller => "database_updates",
 															:action => "show")
 	s.rights << dbups_show
+	people_all = Right.create!(	:name => "People (all)",
+															:controller => "people")
+	s.rights << people_all
 	
 	# Administrator
 	admin = Role.create!(	:name => "Administrator")

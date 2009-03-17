@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090316124733) do
+ActiveRecord::Schema.define(:version => 20090317161501) do
 
   create_table "advanced_searches", :force => true do |t|
     t.string   "first_name"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20090316124733) do
     t.string   "position"
     t.string   "password_salt"
     t.string   "password_hash"
+    t.string   "image"
   end
 
   create_table "people_roles", :id => false, :force => true do |t|

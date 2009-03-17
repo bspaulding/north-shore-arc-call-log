@@ -24,3 +24,10 @@ namespace :passenger do
 end
 
 after :deploy, "passenger:restart"
+
+after 'deploy:update_code', 'deploy:link_profile_images' 
+namespace(:deploy) do 
+	task :link_profile_images do 
+		run "cd #{release_path} && ln -nfs #{shared_path}/person #{release_path}/public/person"
+	end 
+end 
