@@ -3,7 +3,7 @@ default_run_options[:pty] = true
 set :application, "nsarc_call_log"
 set :repository,  "git@github.com:bspaulding/north-shore-arc-call-log.git"
 set :scm, :git
-set :user, "nsarc"
+set :user, "calllog"
 set :use_sudo, false
 
 set :branch, 'master'
