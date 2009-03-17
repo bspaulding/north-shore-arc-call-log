@@ -4,7 +4,7 @@ set :application, "nsarc_call_log"
 set :repository,  "git@github.com:bspaulding/north-shore-arc-call-log.git"
 set :scm, :git
 set :user, "calllog"
-set :use_sudo, false
+set :use_sudo, true
 
 set :branch, 'master'
 
