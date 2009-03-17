@@ -6,32 +6,32 @@
 
 <div id="profile_detail">
 
-<p><b>Gender:</b> <%= @person.gender.capitalize %></p>
+<p><b>Gender:</b> <%= (@person.gender.blank?) ? 'Unspecified' : @person.gender.capitalize %></p>
 
 <p>
 	<b>Hired On:</b><br/>
-	<%= @person.doh.strftime("%B %d, %Y") %>
+	<%= (@person.doh.blank?) ? 'Unspecified' : @person.doh.strftime("%B %d, %Y") %>
 </p>
 
 <p>
 	<b>Email:</b><br/>
-	<%= @person.email_address %>
+	<%= (@person.email_address.blank?) ? 'Unspecified' : @person.email_address %>
 </p>
 
 <p>
 	<b>Home Phone:</b><br/>
-	<%= @person.home_phone %>
+	<%= (@person.home_phone.blank?) ? 'Unspecified' : @person.home_phone %>
 </p>
 
 <p>
 	<b>Mobile Phone:</b><br/>
-	<%= @person.mobile_phone %>
+	<%= (@person.mobile_phone.blank?) ? 'Unspecified' : @person.mobile_phone %>
 </p>
 
 <p>
 <b>Address</b><br/>
-<%= @person.address_street %><br/>
-<%= @person.address_city %>, <%= @person.address_state %> <%= @person.address_zip %>
+<%= (@person.address_street.blank?) ? 'Unspecified' : @person.address_street %><br/>
+<%= (@person.address_city.blank?) ? 'Unspecified' : @person.address_city %>, <%= (@person.address_state.blank?) ? 'Unspecified' : @person.address_state %> <%= (@person.address_zip.blank?) ? 'Unspecified' : @person.address_zip %>
 </p>
 
 <p>

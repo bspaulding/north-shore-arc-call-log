@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
   def authorize
   	# Get all the current users' rights
   	person = Person.find(session[:user_id])
+  	person.roles << Role.find(:first, :conditions => {:name => "DirectCareProvider"}) if person.roles.empty?
   	rights = person.roles.collect { |role| role.rights }.flatten
   	# Check each right against the current controller/action, and return true if an authorization path is found.
 		rights.each do |right|
