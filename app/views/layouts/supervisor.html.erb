@@ -12,10 +12,8 @@
 <div id="wrapper">
 	<div align="center"><img src="/images/nsarc_logo.gif"></div>
 	
-	<h1>Supervisor</h1>
-	
 	<% if session[:user_id] %>
-		<div align="right"><%= link_to 'Logout', url_for(:controller => 'login', :action => 'logout') %></div>
+		<div align="right"><%= link_to 'Home', home_url %> | <%= link_to 'Logout', url_for(:controller => 'login', :action => 'logout') %></div>
 	<% end %>
 	
 	<% if flash[:error] %><p style="color: green"><%= flash[:notice] %></p><% end %>

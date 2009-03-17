@@ -20,6 +20,7 @@ class HousesController < ApplicationController
 	in_place_edit_for :house, :phone_1
 	in_place_edit_for :house, :phone_2
 	in_place_edit_for :house, :fax
+	in_place_edit_for :house, :bu_code
 	
 	in_place_edit_for :individual, :guardian_name
 	in_place_edit_for :individual, :guardian_phone_home

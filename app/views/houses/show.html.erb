@@ -1,5 +1,6 @@
-<h1><%= (@house.name.nil?) ? "Unnamed House" : @house.name %></h1>
+<h1><%= in_place_editor_field :house, 'name' %></h1>
 <p>
+	<%= in_place_editor_field :house, 'bu_code' %><br/>
 	<%= in_place_editor_field :house, 'address_street' %><br/>
 	<%= in_place_editor_field :house, 'address_city' %>, <%= in_place_editor_field :house, 'address_state' %> <%= in_place_editor_field :house, 'address_zip' %><br/>
 	<%= in_place_editor_field :house, 'phone_1' %> // <%= in_place_editor_field :house, 'phone_2' %> // <%= in_place_editor_field :house, 'fax' %>

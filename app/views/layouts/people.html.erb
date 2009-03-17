@@ -15,7 +15,7 @@
 	<div align="center"><img src="/images/nsarc_logo.gif"></div>
 	
 	<% if session[:user_id] %>
-		<div align="right"><%= link_to 'Logout', url_for(:controller => 'login', :action => 'logout') %></div>
+		<div align="right"><%= link_to 'Home', home_url Person.find(session[:user_id]) %> | <%= link_to 'Logout', url_for(:controller => 'login', :action => 'logout') %></div>
 	<% end %>
 	
 	<p style="color: green; text-align: center;"><%= flash[:notice] %></p>
