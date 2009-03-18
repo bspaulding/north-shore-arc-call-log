@@ -47,15 +47,20 @@ class ApplicationController < ActionController::Base
   
   # Return the Home URL for this user
 	def home_url(person)
-		url = ""
-		role_names = person.roles.collect { |role| role.name }
-		if role_names.member?("Administrator")
-			url = url_for(:controller => "administrator", :index => "index")
-		elsif role_names.member?("Supervisor")
-			url = url_for(:controller => "supervisor", :index => "index")
+		if session[:home_url]
+			return session[:home_url]
 		else
-			url = url_for(person)
+			url = ""
+			role_names = person.roles.collect { |role| role.name }
+			if role_names.member?("Administrator")
+				url = url_for(:controller => "administrator", :index => "index")
+			elsif role_names.member?("Supervisor")
+				url = url_for(:controller => "supervisor", :index => "index")
+			else
+				url = url_for(person)
+			end
+			session[:home_url] = url
+			return url
 		end
-		return url
 	end
 end

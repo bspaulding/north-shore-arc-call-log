@@ -5,7 +5,7 @@
 	<table>
 		<tr>
 			<td>
-				<select name="new_filter_name" id="new_filter_name">
+				<select name="new_filter_name" id="new_filter_name" onchange="$('spinner').show();">
 					<%= options_for_select @empty_filters.collect { |name| [name.humanize, name] }, @empty_filters.first %>
 				</select>
 			</td>
@@ -13,7 +13,13 @@
 				<%= render :partial => 'search_filter_form_field', :object => @empty_filters.first, :locals => {:search => search_filters} %>
 			</td>
 			<td>
-				<%= submit_tag 'Add Filter' %>
+				<%= submit_tag 'Add Filter', :onclick => "$('spinner').show();" %>
+			</td>
+			<td align="right">
+				<div id="spinner" class="spinner"><img src="/images/spinner.gif"></div>
+				<script type="text/javascript">
+				$('spinner').toggle();
+				</script>
 			</td>
 		</tr>
 	</table>
@@ -22,7 +28,6 @@
 
 <%= observe_field 'new_filter_name',
 									:url => {:action => 'update_new_filter_type', :params => {:advanced_search_id => search_filters.id}},
-									:update => 'new_filter_form_field',
 									:frequency => 1,
 									:with => 'filter_name' %>
 			

@@ -89,7 +89,10 @@ class AdvancedSearchesController < ApplicationController
   def update_new_filter_type
   	@advanced_search = AdvancedSearch.find(params[:advanced_search_id])
 	 	
-	 	render :partial => 'search_filter_form_field', :object => params[:filter_name], :locals => {:search => @advanced_search}
+	 	render :update do |page|
+	 		page.hide 'spinner'
+	 		page.replace_html 'new_filter_form_field', :partial => 'search_filter_form_field', :object => params[:filter_name], :locals => {:search => @advanced_search}
+	 	end
   end
   
   # GET /advanced_searches

@@ -16,7 +16,7 @@ class AdvancedSearch < ActiveRecord::Base
   
   # Initiates the find, conditions calls the conditions method
   def find_people
-  	Person.find(:all, :conditions => conditions)
+  	Person.find(:all, :conditions => conditions, :order => "last_name, first_name ASC")
   end
   
   # Note: All methods suffixed with '_conditions' return 

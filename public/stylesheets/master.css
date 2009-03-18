@@ -144,3 +144,8 @@ a:link, a:visited, a:hover, a:active .editor_cancel_link {
 	font-size: 10pt;
 }
 
+.spinner {
+	float: right;
+	display: inline;
+}
+

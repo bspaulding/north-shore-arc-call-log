@@ -15,7 +15,13 @@
 		<% form_remote_tag :url => url_for(:action => 'remove_filter') do -%>
 			<%= hidden_field_tag 'advanced_search_id', search.id %>
 			<%= hidden_field_tag 'filter_name', search_filter %>
-			<%= submit_tag "Remove Filter" %>
+			<%= submit_tag "Remove Filter", :onclick => "$('spinner_#{search_filter}').toggle();" %>
 		<% end -%>
+	</td>
+	<td align="right" width="20px">
+		<div id="spinner_<%= search_filter %>" class="spinner"><img src="/images/spinner.gif"></div>
+		<script type="text/javascript">
+		$('spinner_<%= search_filter %>').toggle();
+		</script>
 	</td>
 </tr>
