@@ -1,6 +1,15 @@
 <h1>Houses</h1>
-<ul>
+<ul id="houses_list">
 	<% @houses.each do |house| %>
-	<li><%= link_to house.name, house %></li>
+	<li>
+		<p>
+			<b><%= house.name %></b><br/>
+			(<%= link_to "View", house %> | <%= link_to "Edit", edit_house_url(house) %> | Delete )
+		</p>
+		<p>
+			<%= house_address(house) %><br/>
+			<%= house_phones(house) %><br/>
+		</p>
+	</li>
 	<% end %>
 </ul>

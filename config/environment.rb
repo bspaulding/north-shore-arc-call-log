@@ -69,3 +69,26 @@ end
 
 # Require custom exceptions
 require 'lib/exceptions.rb'
+
+# Add group method to the Array class.
+class Array
+	# Method: group
+	# Purpose: This method is a convenience for assembling tables from array collections.
+	# Params: cols => number of elements each resulting array element should contain at maximum.
+	# Example:
+	#			a = [1,2,3,4,5,6]
+	#			a.group(3) #=> [[1,2,3], [4,5,6]]
+	#		Remainder items are included on the tail if they exist:
+	#     a = [1,2,3,4,5,6,7,8]
+	#			a.group(3) #=> [[1,2,3], [4,5,6], [7,8]]
+  def group(cols)
+    result = []
+    rows = self.size/cols
+    ((self.size % cols == 0) ? rows : rows + 1).times do |i|
+      upper_i = (cols-1)+cols*i
+	    upper_i = -1 if upper_i >= self.size
+      result << self[(0+cols*i)..upper_i]
+    end
+    result
+  end
+end
