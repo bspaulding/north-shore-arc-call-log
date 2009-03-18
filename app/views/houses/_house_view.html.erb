@@ -1,0 +1,77 @@
+<% house = house_view %>
+<% unless house.all_directors.empty? -%>
+<h3>Directors</h3>
+<div id="directors">
+<table>
+	<tr>
+		<th align="left" width="200px">Name</th>
+		<th align="left" width="200px">Position</th>
+		<th align="left" width="200px">Trainings</th>
+		<th align="left" width="200px">Phone Number(s)</th>
+	</tr>
+	<%= render :partial => "house_person_table_row_view", :collection => house.all_directors, :locals => {:house_id => house.id} %>
+</table>
+</div>
+<% end -%>
+
+<% unless house.house_managers.empty? -%>
+<h3>House Managers</h3>
+<div id="house_managers">
+<table>
+	<tr>
+		<th align="left" width="200px">Name</th>
+		<th align="left" width="200px">Position</th>
+		<th align="left" width="200px">Trainings</th>
+		<th align="left" width="200px">Phone Number(s)</th>
+	</tr>
+	<%= render :partial => "house_person_table_row_view", :collection => house.house_managers, :locals => {:house_id => house.id} %>
+</table>
+</div>
+<% end -%>
+
+<% unless house.awake_overnights.empty? -%>
+<h3>Overnight Managers</h3>
+<div id="overnight_staff">
+<table>
+	<tr>
+		<th align="left" width="200px">Name</th>
+		<th align="left" width="200px">Position</th>
+		<th align="left" width="200px">Trainings</th>
+		<th align="left" width="200px">Phone Number(s)</th>
+	</tr>
+	<%= render :partial => "house_person_table_row_view", :collection => house.awake_overnights, :locals => {:house_id => house.id} %>
+</table>
+</div>
+<% end -%>
+
+<% unless house.relief_staff.empty? -%>
+<h3>Relief Staff</h3>
+<div id="relief_staff">
+<table>
+	<tr>
+		<th align="left" width="200px">Name</th>
+		<th align="left" width="200px">Position</th>
+		<th align="left" width="200px">Trainings</th>
+		<th align="left" width="200px">Phone Number(s)</th>
+	</tr>
+	<%= render :partial => "house_person_table_row_view", :collection => house.relief_staff, :locals => {:house_id => house.id} %>
+	</tr>
+</table>
+</div>
+<% end -%>
+
+<% unless house.overtime_staff.empty? -%>
+<h3>Overtime Staff</h3>
+<div id="overtime_staff">
+<table>
+	<tr>
+		<th align="left" width="200px">Name</th>
+		<th align="left" width="200px">Position</th>
+		<th align="left" width="200px">Trainings</th>
+		<th align="left" width="200px">Phone Number(s)</th>
+	</tr>
+	<%= render :partial => "house_person_table_row_view", :collection => house.overtime_staff, :locals => {:house_id => house.id} %>
+	</tr>
+</table>
+</div>
+<% end -%>

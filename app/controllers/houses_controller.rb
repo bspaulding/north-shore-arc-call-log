@@ -134,10 +134,19 @@ class HousesController < ApplicationController
 
   def show
   	begin
-	  @house = House.find(params[:id])
-	rescue ActiveRecord::RecordNotFound
-	  flash[:error] = "I'm sorry, we couldn't locate that house. Please try again."
-	  redirect_to :action => 'index'
-	end
+		  @house = House.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+		  flash[:error] = "I'm sorry, we couldn't locate that house. Please try again."
+		  redirect_to :action => 'index'
+		end
+  end
+  
+  def edit
+  	begin
+  		@house = House.find(params[:id])
+  	rescue ActiveRecord::RecordNotFound
+  		flash[:error] = "I'm sorry, we couldn't locate that house. Please try again."
+		  redirect_to :action => 'index'
+  	end
   end
 end

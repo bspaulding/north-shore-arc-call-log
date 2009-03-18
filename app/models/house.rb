@@ -51,6 +51,10 @@ class House < ActiveRecord::Base
 	# Categorized People Accessors
 	#	positions = [	"House Director", "Asst. Div. Director", "Clinical Manager", "Asst. House Director",
 	#								"House Manager", "Awake Overnight", "Relief", "Heritage Specialty", "Middleton 4"]
+	def all_directors
+		self.house_directors + self.asst_div_directors + self.clinical_managers + self.asst_house_managers
+	end
+	
 	def house_directors
 		Person.find(:all, 
 								:conditions => "people.position = 'House Director' AND house_id = #{self.id}", 

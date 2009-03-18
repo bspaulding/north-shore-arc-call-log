@@ -1,91 +1,100 @@
-<h1><%= in_place_editor_field :house, 'name' %></h1>
+<div align="right"><%= link_to "Edit House", edit_house_url(@house) %></div>
+<h1><%= @house.name %></h1>
 <p>
-	<%= in_place_editor_field :house, 'bu_code' %><br/>
-	<%= in_place_editor_field :house, 'address_street' %><br/>
-	<%= in_place_editor_field :house, 'address_city' %>, <%= in_place_editor_field :house, 'address_state' %> <%= in_place_editor_field :house, 'address_zip' %><br/>
-	<%= in_place_editor_field :house, 'phone_1' %> // <%= in_place_editor_field :house, 'phone_2' %> // <%= in_place_editor_field :house, 'fax' %>
+	Cost Center: <%= @house.bu_code %><br/>
+	
+	<% unless	@house.address_street == House::DEFAULT_ADDRESS_STREET ||
+						@ouse.address_city == House::DEFAULT_ADDRESS_CITY ||
+						@house.address_state == House::DEFAULT_ADDRESS_STATE ||
+						@house.address_zip == House::DEFAULT_ADDRESS_ZIP -%>
+	<%= @house.address_street %><br/>
+	<%= @house.address_city %>, <%= @house.address_state %> <%= @house.address_zip %><br/>
+	<% end -%>
+
+	<%= @house.phone_1 unless	@house.phone_1 == House::DEFAULT_PHONE_1 %> 
+	<%= @house.phone_2 unless @house.phone_2 == House::DEFAULT_PHONE_2 %>
+	<%= @house.fax unless @house.fax == House::DEFAULT_FAX %>
 </p>
 
-<%= form_remote_tag :url => url_for(:action => 'add_person_to_house') %>
-<%= hidden_field_tag 'house_id', @house.id %>
-<%= text_field_with_auto_complete :person, 'name' %> <%= submit_tag 'Add Person' %>
-</form>
-
-<hr>
-
 <div id="house_detail">
-<%= render :partial => 'house', :object => @house %>
+<%= render :partial => 'house_view', :object => @house %>
 </div>
 
+<% unless @house.agency_staff == House::DEFAULT_FIELD_TEXT -%>
 <h3>Agency Staff</h3>
-<input type="button" onclick="$('agency_staff').toggle();" value="Hide/Show"/>
 <div id="agency_staff">
-<%= in_place_editor_field :house, 'agency_staff', {}, {:rows => 10, :cols => 100} %>
+<p><%= @house.agency_staff %></p>
 </div>
+<% end -%>
 
+<% unless @house.overview == House::DEFAULT_FIELD_TEXT -%>
 <h3>Overview</h3>
-<input type="button" onclick="$('overview').toggle();" value="Hide/Show"/>
 <div id="overview">
-<%= in_place_editor_field :house, 'overview', {}, {:rows => 10, :cols => 100} %>
+<p><%= @house.overview %></p>
 </div>
+<% end -%>
 
+<% unless @house.ratio == House::DEFAULT_FIELD_TEXT -%>
 <h3>Ratio</h3>
-<input type="button" onclick="$('ratio').toggle();" value="Hide/Show"/>
 <div id="ratio">
-<%= in_place_editor_field :house, 'ratio', {}, {:rows => 10, :cols => 100} %>
+<p><%= @house.ratio %></p>
 </div>
+<% end -%>
 
+<% unless @house.trainings_needed == House::DEFAULT_FIELD_TEXT -%>
 <h3>Trainings Needed</h3>
-<input type="button" onclick="$('trainings_needed').toggle();" value="Hide/Show"/>
 <div id="trainings_needed">
-<%= in_place_editor_field :house, 'trainings_needed', {}, {:rows => 10, :cols => 100} %>
+<p><%= @house.trainings_needed %></p>
 </div>
+<% end -%>
 
+<% unless @house.medication_times == House::DEFAULT_FIELD_TEXT -%>
 <h3>Medication Times</h3>
-<input type="button" onclick="$('medication_times').toggle();" value="Hide/Show"/>
 <div id="medication_times">
-<%= in_place_editor_field :house, 'medication_times', {}, {:rows => 10, :cols => 100} %>
+<p><%= @house.medication_times %></p>
 </div>
+<% end -%>
 
+<% unless @house.waivers == House::DEFAULT_FIELD_TEXT -%>
 <h3>Waivers</h3>
-<input type="button" onclick="$('waivers').toggle();" value="Hide/Show"/>
 <div id="waivers">
-<%= in_place_editor_field :house, 'waivers', {}, {:rows => 10, :cols => 100} %>
+<p><%= @house.waivers %></p>
 </div>
+<% end -%>
 
+<% unless @house.keys == House::DEFAULT_FIELD_TEXT -%>
 <h3>Keys</h3>
-<input type="button" onclick="$('keys').toggle();" value="Hide/Show"/>
 <div id="keys">
-<%= in_place_editor_field :house, 'keys', {}, {:rows => 10, :cols => 100} %>
+<p><%= @house.keys %></p>
 </div>
+<% end -%>
 
+<% unless @house.schedule_info == House::DEFAULT_FIELD_TEXT -%>
 <h3>Schedule Info</h3>
-<input type="button" onclick="$('schedule_info').toggle();" value="Hide/Show"/>
 <div id="schedule_info">
-<%= in_place_editor_field :house, 'schedule_info', {}, {:rows => 10, :cols => 100} %>
+<p><%= @house.schedule_info %></p>
 </div>
+<% end -%>
 
+<% unless @house.behavior_plans == House::DEFAULT_FIELD_TEXT -%>
 <h3>Behavior Plans</h3>
-<input type="button" onclick="$('behavior_plans').toggle();" value="Hide/Show"/>
 <div id="behavior_plans">
-<%= in_place_editor_field :house, 'behavior_plans', {}, {:rows => 10, :cols => 100} %>
+<p><%= @house.behavior_plans %></p>
 </div>
+<% end -%>
 
+<% unless @house.individuals.empty? -%>
 <h3>Individuals</h3>
-<input type="button" onclick="$('individuals').toggle();" value="Hide/Show"/>
 <div id="individuals">
-<%= form_remote_tag :url => url_for(:action => 'add_individual_to_house') %>
-<%= hidden_field_tag 'house_id', @house.id %>
-<%= text_field_tag 'individual_name' %> <%= submit_tag 'Add Individual' %>
-</form>
-<hr>
 <div id="individuals_detail">
 <%= render :partial => 'individuals', :object => @house.individuals, :locals => {:house_id => @house.id} %>
 </div>
 </div>
+<% end -%>
 
+<% unless @house.phone_numbers == House::DEFAULT_FIELD_TEXT -%>
 <h3>Phone Numbers</h3>
-<input type="button" onclick="$('phone_numbers').toggle();" value="Hide/Show"/>
 <div id="phone_numbers">
-<%= in_place_editor_field :house, 'phone_numbers', {}, {:rows => 10, :cols => 100} %>
+<p><%= @house.phone_numbers %></p>
 </div>
+<% end -%>

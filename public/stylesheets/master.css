@@ -138,3 +138,9 @@ table tr.dark {
 	margin: 20px;
 }
 
+a:link, a:visited, a:hover, a:active .editor_cancel_link {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10pt;
+}
+

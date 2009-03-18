@@ -1,0 +1,15 @@
+<tr id="house_person_id_<%= house_person_table_row_view.id %>">
+	<td><%= house_person_table_row_view.name %></td>
+	<td><%= house_person_table_row_view.position %></td>
+	<td>
+		<ul>
+			<% house_person_table_row_view.certifications.each do |cert| %>
+			<li><%= cert.name %></li>
+			<% end %>
+		</ul>
+	</td>
+	<td>
+		Home: <%= (house_person_table_row_view.home_phone.nil?) ? "None" : house_person_table_row_view.home_phone %><br/>
+		Cell: <%= (house_person_table_row_view.mobile_phone.nil?) ? "None" : house_person_table_row_view.mobile_phone %>
+	</td>
+</tr>
