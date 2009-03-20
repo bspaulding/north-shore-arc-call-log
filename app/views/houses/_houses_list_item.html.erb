@@ -1,0 +1,15 @@
+<% house = houses_list_item -%>
+<li>
+	<p>
+		<b><%= house.name %></b><br/>
+		(<%= link_to "View", house %> | <%= link_to "Edit", edit_house_url(house) %> | Delete )
+	</p>
+	<% address = house_address(house) -%>
+	<% unless address.blank? -%>
+	<p><%= address %></p>
+	<% end -%>
+	<% phones = house_phones(house) -%>
+	<% unless phones.blank? -%>
+	<p><%= phones %></p>
+	<% end -%>
+</li>

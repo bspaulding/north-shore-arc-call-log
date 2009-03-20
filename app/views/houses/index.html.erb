@@ -1,15 +1,11 @@
 <h1>Houses</h1>
+
+<div id="add_house_form">
+	<%= form_remote_tag :url => {:controller => :houses, :action => :create}, :method => :post %>
+		<%= text_field_tag "house_name" %> <%= submit_tag "Add House" %>
+	</form>
+</div>
+
 <ul id="houses_list">
-	<% @houses.each do |house| %>
-	<li>
-		<p>
-			<b><%= house.name %></b><br/>
-			(<%= link_to "View", house %> | <%= link_to "Edit", edit_house_url(house) %> | Delete )
-		</p>
-		<p>
-			<%= house_address(house) %><br/>
-			<%= house_phones(house) %><br/>
-		</p>
-	</li>
-	<% end %>
+	<%= render :partial => 'houses_list_item', :collection => @houses %>
 </ul>

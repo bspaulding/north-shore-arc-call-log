@@ -44,6 +44,13 @@ class House < ActiveRecord::Base
 															["Briana", "278"],
 															["Independent", ""]]
 	
+	# Hooks
+	before_create :set_defaults
+	
+	def set_defaults
+		# TODO!
+	end
+	
 	# Associations:
 	has_and_belongs_to_many :people, :order => "last_name,first_name ASC"
 	has_and_belongs_to_many :individuals

@@ -129,7 +129,7 @@ class HousesController < ApplicationController
 	end
 	
   def index
-    @houses = House.all
+    @houses = House.find(:all, :order => "name ASC")
   end
 
   def show
@@ -147,6 +147,14 @@ class HousesController < ApplicationController
   	rescue ActiveRecord::RecordNotFound
   		flash[:error] = "I'm sorry, we couldn't locate that house. Please try again."
 		  redirect_to :action => 'index'
+  	end
+  end
+  
+  def create
+  	House.create!(:name => params[:house_name]) unless params[:house_name].blank?
+  	
+  	render :update do |page|
+  		page.replace_html 'houses_list', :partial => 'houses_list_item', :collection => House.find(:all, :order => "name ASC")
   	end
   end
 end

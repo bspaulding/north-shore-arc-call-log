@@ -1,4 +1,6 @@
-<div align="right"><%= link_to "Edit House", edit_house_url(@house) %></div>
+<div align="right">
+	<%= link_to "Houses Index", houses_url %> | <%= link_to "Edit House", edit_house_url(@house) %>
+</div>
 <h1><%= @house.name %></h1>
 <p>
 	Cost Center: <%= @house.bu_code %><br/>

@@ -9,6 +9,10 @@ module HousesHelper
 	end
 	
 	def house_phones(house)
-		"#{house.phone_1 unless	house.phone_1 == House::DEFAULT_PHONE_1} #{house.phone_2 unless house.phone_2 == House::DEFAULT_PHONE_2} #{house.fax unless house.fax == House::DEFAULT_FAX}"
+		phones = []
+		phones << house.phone_1 unless house.phone_1.blank? || house.phone_1 == House::DEFAULT_PHONE_1
+		phones << house.phone_1 unless house.phone_2.blank? || house.phone_2 == House::DEFAULT_PHONE_2
+		phones << house.fax unless house.fax.blank? || house.fax == House::DEFAULT_FAX
+		phones.join(' // ')
 	end
 end
