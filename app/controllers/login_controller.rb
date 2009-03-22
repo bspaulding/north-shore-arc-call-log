@@ -1,7 +1,17 @@
+# = LoginController
+#
+# Author: Bradley J. Spaulding
+#
+# === Purpose
+# Handles logging in current users and registering new users.
 class LoginController < ApplicationController
+  # Displays initial Login form.
   def index
   end
   
+  # Post-only.
+  #
+  # Tries to log in a user from /login/index, and redirects back there on failure, or the user's home url.
   def login
     @person = Person.find(:first, :conditions => {:email_address => params[:email_address]})
     if @person.nil?
@@ -19,9 +29,13 @@ class LoginController < ApplicationController
     end
   end
   
+  # Displays registration form.
   def register
   end
   
+  # Post-only
+  #
+  # Tries to set a user's password from /login/register, and redirects back on failure, or to the user's home url.
   def new_user_setup
   	@person = Person.find(:first, :conditions => {:email_address => params[:email_address]})
   	if @person.nil?
@@ -40,6 +54,7 @@ class LoginController < ApplicationController
   	end
   end
   
+  # Logs out the current user, redirects to login/index
   def logout
   	session[:user_id] = nil
   	flash[:notice] = "You have successfully logged out."

@@ -1,5 +1,10 @@
-# Class: AdvancedSearchesController
-# Purpose: Handles CRUD for the AdvancedSearch Model.
+# = AdvancedSearchesController
+#
+# Author: Bradley J. Spaulding
+#
+# === Purpose
+# This is the REST controller for the AdvancedSearch resource,
+# handing all routes under /advanced_searches.
 class AdvancedSearchesController < ApplicationController
   layout 'people'
 	
@@ -21,12 +26,13 @@ class AdvancedSearchesController < ApplicationController
 										"home_phone",
 										"mobile_phone"]
   
-  # Method: add_filter
   # Adds a filter to the search with id = params[:advanced_search_id]
+  #
   # Expects: 
-  #  - params[:advanced_search_id], id of AdvancedSearch to update.
-  #  - params[:new_filter_name], attribute name of AdvancedSearch to update.
-  #  - params[:new_filter_value], new value for the given attribute name
+  # - params[:advanced_search_id], id of AdvancedSearch to update.
+  # - params[:new_filter_name], attribute name of AdvancedSearch to update.
+  # - params[:new_filter_value], new value for the given attribute name
+  #
   # Response:
   # Updates the page elements 'search_filters' and 'search_results'
   def add_filter
@@ -58,11 +64,12 @@ class AdvancedSearchesController < ApplicationController
 	  end
   end
   
-  # Method: remove_filter
   # Removes a filter from the search with id = params[:advanced_search_id]
+  #
   # Expects: 
-  #  - params[:advanced_search_id], id of AdvancedSearch to update.
-  #  - params[:filter_name], attribute name of AdvancedSearch to update.
+  # - params[:advanced_search_id], id of AdvancedSearch to update.
+  # - params[:filter_name], attribute name of AdvancedSearch to update.
+  #
   # Response:
   # Updates the page elements 'search_filters' and 'search_results'
   def remove_filter
@@ -84,7 +91,6 @@ class AdvancedSearchesController < ApplicationController
 	  end
   end
   
-  # Method: update_new_filter_type
   # Renders the new form for the newly selected filter type in the browser
   def update_new_filter_type
   	@advanced_search = AdvancedSearch.find(params[:advanced_search_id])
@@ -108,7 +114,6 @@ class AdvancedSearchesController < ApplicationController
   end
 
   # GET /advanced_searches/1
-  # GET /advanced_searches/1.xml
   def show
     @advanced_search = AdvancedSearch.find(params[:id])
     @people = @advanced_search.people
@@ -125,7 +130,6 @@ class AdvancedSearchesController < ApplicationController
   end
 
   # GET /advanced_searches/new
-  # GET /advanced_searches/new.xml
   def new
     @advanced_search = AdvancedSearch.new
 
@@ -141,7 +145,6 @@ class AdvancedSearchesController < ApplicationController
   end
 
   # POST /advanced_searches
-  # POST /advanced_searches.xml
   def create
     @advanced_search = AdvancedSearch.new(params[:advanced_search])
 

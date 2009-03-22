@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   # Load parseexcel
   require 'parseexcel'
   
-  # Verify the user, or force a login
+  # Verify the user has logged in and redirect to login/index if not.
   def authenticate
   	unless session[:user_id]
   		session[:intended_controller] = controller_name
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 	  end
   end
   
-  # Check the current user's authorization for their desired action
+  # Check the current user's authorization for the desired action. Redirect to the user's home if not.
   def authorize
   	# Get all the current users' rights
   	person = Person.find(session[:user_id])
@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
  		 redirect_to home_url(person)
   end
   
-  # Return the Home URL for this user
+  # Return the Home URL for the current user. Either administrator/index, supervisor/index, or people/show/#{person.id}
 	def home_url(person)
 		if session[:home_url]
 			return session[:home_url]

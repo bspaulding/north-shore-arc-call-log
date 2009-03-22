@@ -1,3 +1,10 @@
+# = Individual
+#
+# === Purpose
+# Encapsulates an Individual on a House profile.
+#
+# === Associations
+# - has_and_belongs_to_many :houses[link:House.html]
 class Individual < ActiveRecord::Base
 	# Constants
 	DEFAULT_GUARDIAN_NAME = "Add Guardian Name"

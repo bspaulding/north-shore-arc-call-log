@@ -1,3 +1,10 @@
+# = HousesController
+#
+# Author: Bradley J. Spaulding
+#
+# === Purpose
+# This is the REST controller for the House resource,
+# handing all routes under /houses.
 class HousesController < ApplicationController
 	before_filter :authenticate, :authorize
 	

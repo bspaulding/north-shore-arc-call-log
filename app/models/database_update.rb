@@ -1,19 +1,24 @@
-# Class: DatabaseUpdate
+# = DatabaseUpdate
+#
 # Author: Bradley J. Spaulding
-# ------------------
+#
+# === Purpose
 # DatabaseUpdate encapsulates a particular instance of a spreadsheet import,
 # and contains all the logic for running that import on the database.
+#
 # Each time data is imported, a DatabaseUpdate is created, tracking:
-#     - the file location of the spreadsheet used
-#     - the date and time the update was run
-#     - the changes that were made, in the form designated below
+# - the file location of the spreadsheet used
+# - the date and time the update was run
+# - the changes that were made, in the form designated below
+# 
+# === Storing Changes
+# :changes is a Hash of the following form:
+#     {:created => [id1, id2, id3, ...],
+#      :updated => [[id4, attributeName, oldValue, newValue], ...]
+#      :destroyed => ["PersonName1", "PersonName2", "PersonName3", ...]}
+# Where each idN number is an id for a Person either created, updated or destroyed.
+# serialize tells Rails to store changes as text, and convert it to a Hash upon retrieval
 class DatabaseUpdate < ActiveRecord::Base
-  # changes is a Hash of the following form:
-  #     {:created => [id1, id2, id3, ...],
-  #      :updated => [[id4, attributeName, oldValue, newValue], ...]
-  #      :destroyed => ["PersonName1", "PersonName2", "PersonName3", ...]}
-  # where each idN number is an id for a Person either created, updated or destroyed.
-  # serialize tells Rails to store changes as text, and convert it to a Hash upon retrieval
   serialize :changes, Hash
   
   # do not save a DatabaseUpdate without a spreadsheet_path, this is a required field
@@ -27,9 +32,9 @@ class DatabaseUpdate < ActiveRecord::Base
   
   private
   
-  # import_data
-  # returns: void
-  # purpose: open the spreadsheet and run updates on the database, storing changes as above
+  # Opens the spreadsheet and run updates on the database, storing changes as above.
+  # 
+  # Throws CallLogExceptions::InvalidSpreadsheetError when appropriate.
   def import_data
     RAILS_DEFAULT_LOGGER.info "Inside import_data"
     # Open the spreadsheet
@@ -107,10 +112,9 @@ class DatabaseUpdate < ActiveRecord::Base
                     "EMAIL_ADDRESS", "GENDER", "ADDRESS1", "ADDRESS2", "CITY", "STATEPROV_NAME",
                     "ZIP_POST_CODE", "EMPL_HIRE_DATE", "SAL_BASE_HRLY", "BU_CODE"]
   
-  # valid_headers
-  # params: 
-  #     - header_row: an array of the string headers
-  # returns: true if headers are valid, false if invalid
+  # Returns true if headers are valid, false if invalid
+	#
+  # Header_row is an array of the string headers
   def valid_headers?(header_row)
     RAILS_DEFAULT_LOGGER.info "Inside valid_headers?"
     # Each of the cells are compared individually, 

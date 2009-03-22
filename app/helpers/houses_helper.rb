@@ -1,4 +1,6 @@
+# Helper methods available to templates under HousesController
 module HousesHelper
+	# Returns a formatted house address block for a particular house.
 	def house_address(house)
 		unless	house.address_street == House::DEFAULT_ADDRESS_STREET ||
 						house.address_city == House::DEFAULT_ADDRESS_CITY ||
@@ -8,6 +10,7 @@ module HousesHelper
 		end
 	end
 	
+	# Returns a formatted phone number block for a particular house.
 	def house_phones(house)
 		phones = []
 		phones << house.phone_1 unless house.phone_1.blank? || house.phone_1 == House::DEFAULT_PHONE_1

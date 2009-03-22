@@ -1,6 +1,10 @@
-# Controller: DatabaseUpdatesController
+# = DatabaseUpdatesController
+#
 # Author: Bradley J. Spaulding
-# Purpose: Handles all requests for the DatabaseUpdate resource, all routes under /database_updates
+#
+# === Purpose
+# This is the REST controller for the DatabaseUpdate resource, 
+# handling all routes under /database_updates.
 class DatabaseUpdatesController < ApplicationController
 	layout 'people'
 	
