@@ -157,11 +157,20 @@ class HousesController < ApplicationController
   	end
   end
   
+  # creates a house with the name params[:house_name]. should only be called from houses/index view.
   def create
-  	House.create!(:name => params[:house_name]) unless params[:house_name].blank?
+  	house = House.create!(:name => params[:house_name]) unless params[:house_name].blank?
   	
   	render :update do |page|
   		page.replace_html 'houses_list', :partial => 'houses_list_item', :collection => House.find(:all, :order => "name ASC")
+  		page.js "alert('Created house - #{house.name}')"
   	end
+  end
+  
+  # destroys (permanently deletes!) the house with id = params[:id]. should only be called from houses/index view.
+  def destroy
+  	house = House.find(params[:id])
+  	house.destroy
+  	redirect_to :action => :index
   end
 end

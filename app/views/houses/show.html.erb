@@ -5,17 +5,9 @@
 <p>
 	Cost Center: <%= @house.bu_code %><br/>
 	
-	<% unless	@house.address_street == House::DEFAULT_ADDRESS_STREET ||
-						@ouse.address_city == House::DEFAULT_ADDRESS_CITY ||
-						@house.address_state == House::DEFAULT_ADDRESS_STATE ||
-						@house.address_zip == House::DEFAULT_ADDRESS_ZIP -%>
-	<%= @house.address_street %><br/>
-	<%= @house.address_city %>, <%= @house.address_state %> <%= @house.address_zip %><br/>
-	<% end -%>
+	<%= house_address @house %>
 
-	<%= @house.phone_1 unless	@house.phone_1 == House::DEFAULT_PHONE_1 %> 
-	<%= @house.phone_2 unless @house.phone_2 == House::DEFAULT_PHONE_2 %>
-	<%= @house.fax unless @house.fax == House::DEFAULT_FAX %>
+	<%= house_phones @house %>
 </p>
 
 <div id="house_detail">

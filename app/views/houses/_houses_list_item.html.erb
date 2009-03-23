@@ -1,8 +1,9 @@
 <% house = houses_list_item -%>
+<a name="house_<%= house.id %>">
 <li>
 	<p>
 		<b><%= house.name %></b><br/>
-		(<%= link_to "View", house %> | <%= link_to "Edit", edit_house_url(house) %> | Delete )
+		(<%= link_to "View", house %> | <%= link_to "Edit", edit_house_url(house) %> | <%= link_to 'Delete', house, :method => :delete, :confirm => "'#{house.name}' will be permanently deleted. Are you sure you want to do this?" %> )
 	</p>
 	<% address = house_address(house) -%>
 	<% unless address.blank? -%>
@@ -13,3 +14,4 @@
 	<p><%= phones %></p>
 	<% end -%>
 </li>
+</a>
