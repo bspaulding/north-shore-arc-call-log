@@ -24,7 +24,7 @@ class Person < ActiveRecord::Base
   named_scope :from_bu, lambda { |bu_code| { :conditions => {:bu_code => bu_code } } }
 
 	# Validations
-	validates_uniqueness_of :email_address
+	validates_uniqueness_of :email_address, :allow_nil => true
 
 	# Authenticate an email/pass Combination. Returns true if combination is valid.
 	def self.authenticate(email_address, password)
