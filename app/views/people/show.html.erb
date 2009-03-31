@@ -30,7 +30,7 @@
 
 <p>
 <b>Address</b><br/>
-<% (@person.address_street.blank?) ? 'Unspecified' : @person.address_street %><br/>
+<% (@person.address_street.blank?) ? 'Unspecified' : @person.address_street %>
 <%= (@person.address_city.blank?) ? 'Unspecified' : @person.address_city %>, <%= (@person.address_state.blank?) ? 'Unspecified' : @person.address_state %> <%= (@person.address_zip.blank?) ? 'Unspecified' : @person.address_zip %>
 </p>
 
