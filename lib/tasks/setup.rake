@@ -62,11 +62,14 @@ namespace :setup do
 		# Create default people for each role
 		puts "\nCreating default users for each role: (email/pass)"
 		puts "\t* directcareprovider@nsarc.org/password"
-		Person.create!(:first_name => "DirectCareProvider", :email_address => "directcareprovider@nsarc.org", :password => "password")
+		dcp = Person.create!(:first_name => "DirectCareProvider", :email_address => "directcareprovider@nsarc.org", :password => "password")
+		dcp.roles << role_direct_care
 		puts "\t* supervisor@nsarc.org/password"
-		Person.create!(:first_name => "Supervisor", :email_address => "supervisor@nsarc.org", :password => "password")
+		supervisor = Person.create!(:first_name => "Supervisor", :email_address => "supervisor@nsarc.org", :password => "password")
+		supervisor.roles << [role_direct_care, role_supervisor]
 		puts "\t* administrator@nsarc.org/password"
-		Person.create!(:first_name => "Administrator", :email_address => "administrator@nsarc.org", :password => "password")
+		admin = Person.create!(:first_name => "Administrator", :email_address => "administrator@nsarc.org", :password => "password")
+		admin.roles << [role_direct_care, role_supervisor, role_administrator]
 		
 		# Generate Random people, with certifications and expiration dates and positions
 		require 'populator'
@@ -100,7 +103,7 @@ namespace :setup do
       person.bu_code				= "299"
     end
 		
-		puts "\nAdding certifications with expiration dates to people..."
+		puts "\nAdding certifications with expiration dates, and default roles to people..."
 		# - Add certification info and assign roles randomly to every person
 		date_range_array = (1.years.from_now.to_date..Date.today).to_a
 		Person.all.each do |person|
@@ -113,9 +116,10 @@ namespace :setup do
       
       # roles
       person.roles << role_direct_care
-      if (rand(10) <= 7)
+      if (rand(10) > 7)
       	person.roles << role_supervisor
       end
+      person.save!
 		end
 		
 		puts "\nGenerating default houses..."
