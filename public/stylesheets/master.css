@@ -149,3 +149,9 @@ a:link, a:visited, a:hover, a:active .editor_cancel_link {
 	display: inline;
 }
 
+table tr:hover {
+	background-color: #afcfed;
+	cursor: pointer;
+	background: ;
+}
+
