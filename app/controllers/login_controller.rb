@@ -57,6 +57,7 @@ class LoginController < ApplicationController
   # Logs out the current user, redirects to login/index
   def logout
   	session[:user_id] = nil
+  	session[:home_url] = nil
   	flash[:notice] = "You have successfully logged out."
   	redirect_to :action => 'index'
   end
