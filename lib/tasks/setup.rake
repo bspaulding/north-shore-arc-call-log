@@ -58,18 +58,6 @@ namespace :setup do
 		puts "\t\t- all/all"
 		all_access = Right.create!(	:name => "All Access")
 		role_administrator.rights << all_access
-	
-		# Create default people for each role
-		puts "\nCreating default users for each role: (email/pass)"
-		puts "\t* directcareprovider@nsarc.org/password"
-		dcp = Person.create!(:first_name => "DirectCareProvider", :email_address => "directcareprovider@nsarc.org", :password => "password")
-		dcp.roles << role_direct_care
-		puts "\t* supervisor@nsarc.org/password"
-		supervisor = Person.create!(:first_name => "Supervisor", :email_address => "supervisor@nsarc.org", :password => "password")
-		supervisor.roles << [role_direct_care, role_supervisor]
-		puts "\t* administrator@nsarc.org/password"
-		admin = Person.create!(:first_name => "Administrator", :email_address => "administrator@nsarc.org", :password => "password")
-		admin.roles << [role_direct_care, role_supervisor, role_administrator]
 		
 		# Generate Random people, with certifications and expiration dates and positions
 		require 'populator'
@@ -84,7 +72,7 @@ namespace :setup do
 									"House Manager", "Awake Overnight", "Relief", "Heritage Specialty", "Middleton 4" ]
     
     puts "\nGenerating random people..."
-    # - Create 50...100 people
+    # - Create 300...500 people
     Person.populate 300...500 do |person|
       fs = Faker::Name.first_name
       person.first_name     = fs
@@ -146,7 +134,59 @@ namespace :setup do
 										:fax => House::DEFAULT_FAX)
 		end
 		
+		# Create default people for each role
+		puts "\nCreating default users for each role: (email/pass)"
+		puts "\t* directcareprovider@nsarc.org/password"
+		dcp = Person.create!(:first_name => "DirectCareProvider", :email_address => "directcareprovider@nsarc.org", :password => "password")
+		dcp.roles << role_direct_care
+		puts "\t* supervisor@nsarc.org/password"
+		supervisor = Person.create!(:first_name => "Supervisor", :email_address => "supervisor@nsarc.org", :password => "password")
+		supervisor.roles << role_direct_care
+		supervisor.roles << role_supervisor
+		puts "\t* administrator@nsarc.org/password"
+		admin = Person.create!(:first_name => "Administrator", :email_address => "administrator@nsarc.org", :password => "password")
+		admin.roles << role_direct_care
+		admin.roles << role_supervisor
+		admin.roles << role_administrator
+		
 		puts "\nAll Done!"
+	end
+	
+	task :spreadsheet => :environment do
+		require 'faker'
+		require 'parseexcel'
+		
+		positions = [	"House Director", "Asst. Div. Director", "Clinical Manager", "Asst. House Director",
+									"House Manager", "Awake Overnight", "Relief", "Heritage Specialty", "Middleton 4" ]
+    date_range_array = (20.years.ago.to_date..Date.today).to_a
+		people = []
+		
+		# "PERSON_ID", "FIRST_NAME", "LAST_NAME", "PHONE_NUMBER", "MOBILE_TEL_NO",
+    # "EMAIL_ADDRESS", "GENDER", "ADDRESS1", "ADDRESS2", "CITY", "STATEPROV_NAME",
+    # "ZIP_POST_CODE", "EMPL_HIRE_DATE", "BU_CODE", "JOB_TITLE"
+		rand(500).times do |i|
+			people[i] = []
+      people[i]	<< i
+      people[i] << Faker::Name.first_name
+      people[i] << Faker::Name.last_name
+      people[i] << Faker::PhoneNumber.phone_number
+      people[i] << Faker::PhoneNumber.phone_number
+      people[i] << Faker::Internet.email
+      people[i] << ["m", "f"][rand(2)]
+      people[i] << Faker::Address.street_address
+      people[i] << ""
+      people[i] << Faker::Address.city
+      people[i] << Faker::Address.us_state_abbr
+      people[i] << Faker::Address.zip_code
+      people[i] << date_range_array[rand(date_range_array.size)].strftime('%m/%d/%Y')
+      people[i] << "299"
+      people[i] << positions[rand(positions.size)]
+    end
+    people.insert(0, DatabaseUpdate::VALID_PERSONNEL_HEADERS)
+    
+    csv = File.new("personnel_data.csv", File::CREAT|File::RDWR)
+    csv.write(people.collect {|person| "#{person.join(',')}\n"})
+    csv.close
 	end
 	
 	task :production => [:environment, "db:migrate"] do 
