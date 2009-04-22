@@ -14,8 +14,8 @@
 }
 
 img .profile_picture {
-	float: right;
-	clear: left;
+	height: 200px;
+	width: 200px;
 	border: 1px solid #CCC;
 	padding: 2px;
 	margin-left: 10px;
@@ -23,7 +23,7 @@ img .profile_picture {
 
 #profile #profile_detail {
 	width: 380px;
-	float: left;
+	display: block;
 	margin-right: 10px;
 	padding: 0px;
 }

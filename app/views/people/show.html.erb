@@ -1,55 +1,64 @@
 <div id="profile">
 
-<div id="title"><%= @person.name %> <% unless @person.nickname.nil? %>(<em>"<%= @person.nickname %>"</em>)<% end %></div>
-
-<img src="<%= (@person.image.blank?) ? '/images/profile_no_image.jpg' : url_for_file_column(@person, 'image') %>" width="200px" height="200px" class="profile_picture">
-
-<div id="profile_detail">
-
-<p><b>Gender:</b> <%= (@person.gender.blank?) ? 'Unspecified' : @person.gender.capitalize %></p>
-
-<p>
-	<b>Hired On:</b><br/>
-	<%= (@person.doh.blank?) ? 'Unspecified' : @person.doh.strftime("%B %d, %Y") %>
-</p>
-
-<p>
-	<b>Email:</b><br/>
-	<%= (@person.email_address.blank?) ? 'Unspecified' : @person.email_address %>
-</p>
-
-<p>
-	<b>Home Phone:</b><br/>
-	<%= (@person.home_phone.blank?) ? 'Unspecified' : @person.home_phone %>
-</p>
-
-<p>
-	<b>Mobile Phone:</b><br/>
-	<%= (@person.mobile_phone.blank?) ? 'Unspecified' : @person.mobile_phone %>
-</p>
-
-<p>
-<b>Address</b><br/>
-<% (@person.address_street.blank?) ? 'Unspecified' : @person.address_street %>
-<%= (@person.address_city.blank?) ? 'Unspecified' : @person.address_city %>, <%= (@person.address_state.blank?) ? 'Unspecified' : @person.address_state %> <%= (@person.address_zip.blank?) ? 'Unspecified' : @person.address_zip %>
-</p>
-
-<p>
-<b>Certifications</b><br/>
-<% @person.persons_certifications.each do |pc| %>
-<%= pc.certification.name %> - <em><%= pc.expiration_date.strftime("%B %d, %Y") unless pc.expiration_date.nil? %></em><br/>
-<% end %>
-</p>
+<div id="title">
+	<%= @person.name %> <% unless @person.nickname.nil? %>(<em>"<%= @person.nickname %>"</em>)<% end %>
 </div>
 
-</div>
+<br/><br/>
 
-<% if @is_admin %>
-	<br/>
-	<b>Upload Profile Picture:</b>
-	<%= form_tag url_for(:controller => 'people', :action => 'upload_image'), :method => 'post', :multipart => true %>
-	<%= hidden_field_tag 'id', @person.id %>
-	<%= file_column_field "person", "image" %> 
-	<%= submit_tag "Upload" %>
-	</form>
-<% end %>
+<table>
+	<tr>
+		<td width="auto" valign="top">
+			<div id="profile_detail">
+			
+			<p><b>Gender:</b> <%= (@person.gender.blank?) ? 'Unspecified' : @person.gender.capitalize %></p>
+			
+			<p>
+				<b>Hired On:</b><br/>
+				<%= (@person.doh.blank?) ? 'Unspecified' : @person.doh.strftime("%B %d, %Y") %>
+			</p>
+			
+			<p>
+				<b>Email:</b><br/>
+				<%= (@person.email_address.blank?) ? 'Unspecified' : @person.email_address %>
+			</p>
+			
+			<p>
+				<b>Home Phone:</b><br/>
+				<%= (@person.home_phone.blank?) ? 'Unspecified' : @person.home_phone %>
+			</p>
+			
+			<p>
+				<b>Mobile Phone:</b><br/>
+				<%= (@person.mobile_phone.blank?) ? 'Unspecified' : @person.mobile_phone %>
+			</p>
+			
+			<p>
+			<b>Address</b><br/>
+			<% (@person.address_street.blank?) ? 'Unspecified' : @person.address_street %>
+			<%= (@person.address_city.blank?) ? 'Unspecified' : @person.address_city %>, <%= (@person.address_state.blank?) ? 'Unspecified' : @person.address_state %> <%= (@person.address_zip.blank?) ? 'Unspecified' : @person.address_zip %>
+			</p>
+			
+			<p>
+			<b>Certifications</b><br/>
+			<% @person.persons_certifications.each do |pc| %>
+			<%= pc.certification.name %> - <em><%= pc.expiration_date.strftime("%B %d, %Y") unless pc.expiration_date.nil? %></em><br/>
+			<% end %>
+			</p>
+			</div>
+		</td>
+		<td width="200px" valign="top">
+			<img src="<%= (@person.image.blank?) ? '/images/profile_no_image.jpg' : url_for_file_column(@person, 'image') %>" class="profile_picture">
+			<% if @is_admin %>
+				<br/>
+				<b>Upload Profile Picture:</b>
+				<%= form_tag url_for(:controller => 'people', :action => 'upload_image'), :method => 'post', :multipart => true %>
+				<%= hidden_field_tag 'id', @person.id %>
+				<%= file_column_field "person", "image" %> 
+				<%= submit_tag "Upload" %>
+				</form>
+			<% end %>
+		</td>
+	</tr>
+</table>
+</div>
