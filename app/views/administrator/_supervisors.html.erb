@@ -1,0 +1,9 @@
+<p>
+	<b>Supervisors</b><br/>
+	<select name="super_id" id="super_id">
+		<%= supervisors.collect {|supervisor| "<option value='#{supervisor.id}'>#{supervisor.name}</option>"} unless supervisors.empty? %>
+	</select>
+	<span id="manage_supervisor_buttons">
+		<%= render :partial => 'manage_supervisor_buttons', :object => supervisors.first %>
+	</span>
+</p>

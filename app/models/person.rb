@@ -54,4 +54,9 @@ class Person < ActiveRecord::Base
   	self.last_name = names[1]
   	self.save!
   end
+  
+  # Returns true is this user is an administrator
+  def admin?
+  	roles.member?(Role.find(:first, :conditions => {:name => "Administrator"}))
+  end
 end

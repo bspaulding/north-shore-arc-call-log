@@ -11,8 +11,10 @@
 
 <br>
 
+<hr>
+
 <%= form_tag "/database_updates", :method => "post", :multipart => true %>
-<!--<h3>Update Database</h3>
+<h3>Update Database</h3>
 <input name="file" type="file"/><input type="Submit" value="Upload &amp; Import"><br/>
 </form>
 <% if DatabaseUpdate.count == 0 %>
@@ -20,5 +22,19 @@
 <% else %>
 	<p><em>The database was last updated on <%= DatabaseUpdate.first(:order => "created_at DESC").created_at.strftime("%A %B %d, at %I:%M %p") %>.</em></p>
 <% end %>
--->
+
+<hr>
+
+<h3>Manage Roles</h3>
+<% text_field_tag "person_name" %>
+<div id="manage_roles">
+<%= render	:partial => 'manage_roles', 
+						:locals => {
+							:admins => @admins, 
+							:supers => @supervisors, 
+							:dcps => @direct_care_providers
+						} 
+%>
+</div>
+
 </div>

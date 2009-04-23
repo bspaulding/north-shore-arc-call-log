@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>North Shore Arc Call Log</title>
+  <%= stylesheet_link_tag 'master' %>
+  <%= stylesheet_link_tag 'supervisor' %>
+  <%= javascript_include_tag :all %>
+</head>
+<body>
+<div id="wrapper">
+	<div align="center"><img src="/images/nsarc_logo.gif"></div>
+	
+	<% if session[:user_id] %>
+		<div align="right"><%= link_to 'Home', home_url %> | <%= link_to 'Logout', url_for(:controller => 'login', :action => 'logout') %></div>
+	<% end %>
+	
+	<% if flash[:notice] %><p style="color: green"><%= flash[:notice] %></p><% end %>
+	<% if flash[:error] %><div id="flash_error"><%= flash[:error] %></div><% end %>
+
+	<%= yield  %>
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<p>
+	<b>Administrators</b><br/>
+	<select name="admin_id" id="admin_id">
+		<%= administrators.collect {|admin| "<option value='#{admin.id}'>#{admin.name}</option>"} unless administrators.empty? %>
+	</select>
+	<span id="manage_administrator_buttons">
+		<%= render :partial => 'manage_administrator_buttons', :object => administrators.first %>
+	</span>
+</p>

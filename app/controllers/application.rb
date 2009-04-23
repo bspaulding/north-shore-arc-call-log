@@ -53,9 +53,9 @@ class ApplicationController < ActionController::Base
 			url = ""
 			role_names = person.roles.collect { |role| role.name }
 			if role_names.member?("Administrator")
-				url = url_for(:controller => "administrator", :index => "index")
+				url = url_for(:controller => "administrator", :action => "index")
 			elsif role_names.member?("Supervisor")
-				url = url_for(:controller => "supervisor", :index => "index")
+				url = url_for(:controller => "supervisor", :action => "index")
 			else
 				url = url_for(person)
 			end

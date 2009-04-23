@@ -1,0 +1,9 @@
+<p>
+	<b>Direct Care Providers</b><br/>
+	<select name="dcp_id" id="dcp_id">
+		<%= direct_care_providers.collect {|dcp| "<option value='#{dcp.id}'>#{dcp.name}</option>"} unless direct_care_providers.empty? %>
+	</select>
+	<span id="manage_direct_care_buttons">
+		<%= render :partial => 'manage_direct_care_buttons', :object => direct_care_providers.first %>
+	</span>
+</p>

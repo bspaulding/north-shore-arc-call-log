@@ -1,0 +1,29 @@
+<div id="administrators">
+<%= render :partial => 'administrators', :object => admins %>
+</div>
+
+<%= observe_field	'admin_id',
+									:url => url_for(
+										:action => 'update_manage_administrator_buttons'
+									),
+									:with => 'administrator_id' %>
+
+<div id="supervisors">
+<%= render :partial => 'supervisors', :object => supers %>
+</div>
+
+<%= observe_field	'super_id',
+									:url => url_for(
+										:action => 'update_manage_supervisor_buttons'
+									),
+									:with => 'supervisor_id' %>
+
+<div id="direct_care_providers">
+<%= render :partial => 'direct_care_providers', :object => dcps %>
+</div>
+
+<%= observe_field	'dcp_id',
+									:url => url_for(
+										:action => 'update_manage_direct_care_buttons'
+									),
+									:with => 'direct_care_id' %>
