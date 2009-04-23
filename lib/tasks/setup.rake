@@ -40,12 +40,11 @@ namespace :setup do
 		adv_searches_all = Right.create!(	:name => "AdvancedSearches (all)",
 																			:controller => "advanced_searches")
 		role_supervisor.rights << adv_searches_all
-		# 	database_updates/show
-		puts "\t\t- database_updates/show"
-		dbups_show = Right.create!(				:name => "DatabaseUpdates (show)",
-																			:controller => "database_updates",
-																			:action => "show")
-		role_supervisor.rights << dbups_show
+		# 	database_updates/all
+		puts "\t\t- database_updates/all"
+		dbups_all = Right.create!(				:name => "DatabaseUpdates (all)",
+																			:controller => "database_updates")
+		role_supervisor.rights << dbups_all
 		# 	people/all
 		puts "\t\t- people/all"
 		people_all = Right.create!(				:name => "People (all)",
@@ -190,10 +189,60 @@ namespace :setup do
 	end
 	
 	task :production => [:environment, "db:migrate"] do 
-		# Clear the database of all models
+		Right.destroy_all
+		Role.destroy_all		
 		
-		# Set default authorization roles/rights
+		# Set default authorization roles/rights NOTE: Include DB_UPDATE_CREATE in administrator
+		puts "\nSetting up default authorization levels..."
+		# DirectCareProvider
+		puts "\t* DirectCareProvider:"
+		role_direct_care = Role.create!(:name => "DirectCareProvider")
+		# 	people/show
+		puts "\t\t- people/show"
+		profiles = Right.create!(:name => "User Profiles", :controller => "people", :action => "show")
+		role_direct_care.rights << profiles
 		
+		# Supervisor
+		puts "\t* Supervisor:"
+		role_supervisor = Role.create!(:name => "Supervisor")
+		# 	supervisor/all
+		puts "\t\t- supervisor/all"
+		super_home = Right.create!(				:name => "Supervisor Controller (all)",
+																			:controller => "supervisor")
+		role_supervisor.rights << super_home
+		# 	houses/all
+		puts "\t\t- houses/all"
+		houses_all = Right.create!(				:name => "Houses (all)",
+																			:controller => "houses")
+		role_supervisor.rights << houses_all
+		# 	advanced_searches/all
+		puts "\t\t- advanced_searches/all"
+		adv_searches_all = Right.create!(	:name => "AdvancedSearches (all)",
+																			:controller => "advanced_searches")
+		role_supervisor.rights << adv_searches_all
+		# 	database_updates/all
+		puts "\t\t- database_updates/all"
+		dbups_all = Right.create!(				:name => "DatabaseUpdates (all)",
+																			:controller => "database_updates")
+		role_supervisor.rights << dbups_all
+		# 	people/all
+		puts "\t\t- people/all"
+		people_all = Right.create!(				:name => "People (all)",
+																			:controller => "people")
+		role_supervisor.rights << people_all
+	
+		# Administrator
+		puts "\t* Administrator:"
+		role_administrator = Role.create!(:name => "Administrator")
+		puts "\t\t- all/all"
+		all_access = Right.create!(	:name => "All Access")
+		role_administrator.rights << all_access
+
 		# Add default admin user
+		puts "Creating default admin user:\n\t *administrator@nsarc.org/password"
+		admin = Person.create!(:first_name => "Administrator", :email_address => "administrator@nsarc.org", :password => "password")
+		admin.roles << role_direct_care
+		admin.roles << role_supervisor
+		admin.roles << role_administrator
 	end
 end
