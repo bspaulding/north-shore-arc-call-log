@@ -18,10 +18,10 @@
 <%= render :partial => 'house', :object => @house %>
 </div>
 
-<h3>Agency Staff</h3>
+<h3>Outside Agency Staff</h3>
 <input type="button" onclick="$('agency_staff').toggle();" value="Hide/Show"/>
 <div id="agency_staff">
-<%= in_place_editor_field :house, 'agency_staff', {}, {:rows => 10, :cols => 100} %>
+<%= in_place_editor_field :house, 'outside_agency_staff', {}, {:rows => 10, :cols => 100} %>
 </div>
 
 <h3>Overview</h3>

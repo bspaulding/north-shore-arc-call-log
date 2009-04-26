@@ -10,7 +10,7 @@ class HousesController < ApplicationController
 	
 	# In Place Editors
 	# -> Allows in place editing for the specified fields
-	in_place_edit_for :house, :agency_staff
+	in_place_edit_for :house, :outside_agency_staff
 	in_place_edit_for :house, :overview
 	in_place_edit_for :house, :ratio
 	in_place_edit_for :house, :trainings_needed
@@ -87,17 +87,7 @@ class HousesController < ApplicationController
 	# Creates an individual with the given name, and adds it to the specified house.
 	# Ajax method, returns the updated individuals view to the browser.
 	def add_individual_to_house
-		individual = Individual.create!(	:name => params[:individual_name],
-																			:guardian_name => Individual::DEFAULT_GUARDIAN_NAME,
-																			:guardian_phone_home => Individual::DEFAULT_GUARDIAN_PHONE_HOME,
-																			:guardian_phone_work => Individual::DEFAULT_GUARDIAN_PHONE_WORK,
-																			:guardian_phone_mobile => Individual::DEFAULT_GUARDIAN_PHONE_MOBILE,
-																			:pcp => Individual::DEFAULT_PCP,
-																			:pcp_phone_number => Individual::DEFAULT_PCP_PHONE,
-																			:day_program => Individual::DEFAULT_DAY_PROGRAM,
-																			:day_program_phone => Individual::DEFAULT_DAY_PROGRAM_PHONE,
-																			:transportation => Individual::DEFAULT_TRANSPORTATION,
-																			:transportation_phone => Individual::DEFAULT_TRANSPORTATION_PHONE)
+		individual = Individual.create!(:name => params[:individual_name])
 		@house = House.find(params[:house_id])
 		@house.individuals << individual
 		render :update do |page|

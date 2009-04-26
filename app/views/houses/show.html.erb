@@ -14,10 +14,10 @@
 <%= render :partial => 'house_view', :object => @house %>
 </div>
 
-<% unless @house.agency_staff == House::DEFAULT_FIELD_TEXT -%>
-<h3>Agency Staff</h3>
+<% unless @house.outside_agency_staff == House::DEFAULT_FIELD_TEXT -%>
+<h3>Outside Agency Staff</h3>
 <div id="agency_staff">
-<p><%= @house.agency_staff %></p>
+<p><%= @house.outside_agency_staff %></p>
 </div>
 <% end -%>
 

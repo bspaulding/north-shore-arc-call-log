@@ -123,6 +123,12 @@ table tr.dark {
 	padding-left: 10px;
 }
 
+#search_results table tr:hover {
+	background-color: #afcfed;
+	cursor: pointer;
+	background: ;
+}
+
 #search_results table th {
 	border-bottom-color: #b3b3b3;
 	border-bottom-style: solid;
@@ -147,11 +153,5 @@ a:link, a:visited, a:hover, a:active .editor_cancel_link {
 .spinner {
 	float: right;
 	display: inline;
-}
-
-table tr:hover {
-	background-color: #afcfed;
-	cursor: pointer;
-	background: ;
 }
 
