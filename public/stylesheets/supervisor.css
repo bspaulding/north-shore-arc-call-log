@@ -1,5 +1,5 @@
 #section_boxes {
-	width: 624px;
+	width: 775px;
 	margin: 40px auto;
 	padding: 0;
 }
@@ -8,11 +8,9 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-image: url(/images/staff.jpg);
-	width: 300px;
+	width: 250px;
 	float: left;
 	height: 200px;
-	
-	margin-right: 10px;
 	
 	text-align: center;
 }
@@ -35,10 +33,8 @@
 	background-repeat: no-repeat;
 	float: left;
 	
-	width: 300px;
+	width: 250px;
 	height: 200px;
-	
-	margin-left: 10px;
 	
 	text-align: center;
 }
@@ -54,3 +50,30 @@
 	background-repeat: no-repeat;
 	text-decoration:none;
 }
+
+#print_section_box {
+	background-position: center;
+	background-image: url(/images/print.jpg);
+	background-repeat: no-repeat;
+	float: left;
+	
+	width: 250px;
+	height: 200px;
+	
+	margin-left: 10px;
+	
+	text-align: center;
+}
+
+#print_section_box a:link, a:visited {
+	text-decoration:none;
+	color: #000;
+}
+
+#print_section_box:hover {
+	background-position: center;
+	background-image: url(/images/print_hover.jpg);
+	background-repeat: no-repeat;
+	text-decoration:none;
+}
+

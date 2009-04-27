@@ -8,6 +8,13 @@
 class PeopleController < ApplicationController
 	before_filter :authenticate, :authorize
 	
+	# Shows the printable call log
+	def index
+		@people = Person.find(:all, :order => 'last_name, first_name ASC')
+		#render :file => 'people/index.html.erb'
+		prawnto :prawn => {:page_layout => :landscape}
+	end
+	
   # Shows a Person's profile
   def show
   	@person = Person.find(params[:id])

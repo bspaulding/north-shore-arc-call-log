@@ -1,0 +1,33 @@
+<div id="people">
+<table border=1 cellpadding="5px">
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Gender</th>
+		<th>Email</th>
+		<th>Home Phone</th>
+		<th>Mobile Phone</th>
+		<th>Address</th>
+		<th>Certifications</th>
+	</tr>
+<% @people.each do |person| %>
+	<tr>
+		<td><%= person.first_name %></td>
+		<td><%= person.last_name %></td>
+		<td><%= person.gender %></td>
+		<td><%= person.email_address %></td>
+		<td><%= person.home_phone %></td>
+		<td><%= person.mobile_phone %></td>
+		<td>
+			<%= person.address_street %><br/>
+			<%= person.address_city %>, <%= person.address_state %> <%= person.address_zip %>
+		</td>
+		<td>
+			<% person.persons_certifications.each do |pc| %>
+			<%= pc.certification.name %> - <em><%= pc.expiration_date.strftime("%B %d, %Y") unless pc.expiration_date.nil? %></em><br/>
+			<% end %>
+		</td>
+	</tr>
+<% end %>
+</table>
+</div>

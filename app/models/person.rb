@@ -43,6 +43,17 @@ class Person < ActiveRecord::Base
 		self.password_salt, self.password_hash = salt, Digest::SHA256.hexdigest(new_password + salt)
 	end
 	
+	# Virtual Getter for 'address'
+	# Returns a formatted address
+	def address
+		address_str = ""
+		address_str += "#{address_street}\n" unless address_street.blank?
+		address_str += "#{address_city}, " unless address_city.blank?
+		address_str += "#{address_state} " unless address_state.blank?
+		address_str += "#{address_zip}" unless address_zip.blank?
+		address_str
+	end
+	
   # Virtual Getter for 'name'
   def name
     "#{first_name} #{last_name}"
