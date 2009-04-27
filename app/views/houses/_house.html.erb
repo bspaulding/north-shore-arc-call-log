@@ -8,10 +8,18 @@
 		<th align="left" width="200px">Trainings</th>
 		<th align="left" width="200px">Phone Number(s)</th>
 	</tr>
-	<%= render :partial => "house_person_table_row", :collection => house.house_directors, :locals => {:house_id => house.id} %>
-	<%= render :partial => "house_person_table_row", :collection => house.asst_div_directors, :locals => {:house_id => house.id} %>
-	<%= render :partial => "house_person_table_row", :collection => house.clinical_managers, :locals => {:house_id => house.id} %>
-	<%= render :partial => "house_person_table_row", :collection => house.asst_house_managers, :locals => {:house_id => house.id} %>
+	<% if house.all_directors.size == 0 %>
+		<tr>
+			<td colspan="4" align="center">
+				<p><em>
+					No Directors are currently on this house profile.<br/>
+					Please add house managers using the form at the top of this page.
+				</em></p>
+			</td>
+		</tr>
+	<% else %>
+		<%= render :partial => "house_person_table_row", :collection => house.all_directors, :locals => {:house_id => house.id} %>
+	<% end %>
 </table>
 </div>
 
