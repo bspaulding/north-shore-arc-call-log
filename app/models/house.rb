@@ -59,25 +59,25 @@ class House < ActiveRecord::Base
 	
 	# Called before create, set_defaults sets blank fields to their default values.
 	def set_defaults
-		self.agency_staff			= DEFAULT_FIELD_TEXT			if agency_staff.nil?
-		self.overview 				= DEFAULT_FIELD_TEXT		 	if overview.nil?
-		self.ratio 						= DEFAULT_FIELD_TEXT		 	if ratio.nil?
-		self.trainings_needed = DEFAULT_FIELD_TEXT		 	if trainings_needed.nil?
-		self.medication_times = DEFAULT_FIELD_TEXT		 	if medication_times.nil?
-		self.waivers 					= DEFAULT_FIELD_TEXT		 	if waivers.nil?
-		self.keys 						= DEFAULT_FIELD_TEXT		 	if keys.nil?
-		self.schedule_info 		= DEFAULT_FIELD_TEXT 			if schedule_info.nil?
-		self.phone_numbers 		= DEFAULT_FIELD_TEXT 			if phone_numbers.nil?
-		self.behavior_plans 	= DEFAULT_FIELD_TEXT 			if behavior_plans.nil?
-		self.name							= "Untitled"				 			if name.nil?
-    self.address_street		= DEFAULT_ADDRESS_STREET 	if address_street.nil?
-    self.address_city			= DEFAULT_ADDRESS_CITY 		if address_city.nil?
-    self.address_state		= DEFAULT_ADDRESS_STATE 	if address_state.nil?
-    self.address_zip			= DEFAULT_ADDRESS_ZIP 		if address_zip.nil?
-    self.phone_1					= DEFAULT_PHONE_1 				if phone_1.nil?
-    self.phone_2					= DEFAULT_PHONE_2 				if phone_2.nil?
-    self.fax							= DEFAULT_FAX 						if fax.nil?
-    self.bu_code					= DEFAULT_BU_CODE		 			if bu_code.nil?
+		self.outside_agency_staff	= DEFAULT_FIELD_TEXT			if outside_agency_staff.nil?
+		self.overview 						= DEFAULT_FIELD_TEXT		 	if overview.nil?
+		self.ratio 								= DEFAULT_FIELD_TEXT		 	if ratio.nil?
+		self.trainings_needed 		= DEFAULT_FIELD_TEXT		 	if trainings_needed.nil?
+		self.medication_times 		= DEFAULT_FIELD_TEXT		 	if medication_times.nil?
+		self.waivers 							= DEFAULT_FIELD_TEXT		 	if waivers.nil?
+		self.keys 								= DEFAULT_FIELD_TEXT		 	if keys.nil?
+		self.schedule_info 				= DEFAULT_FIELD_TEXT 			if schedule_info.nil?
+		self.phone_numbers 				= DEFAULT_FIELD_TEXT 			if phone_numbers.nil?
+		self.behavior_plans 			= DEFAULT_FIELD_TEXT 			if behavior_plans.nil?
+		self.name									= "Untitled"				 			if name.nil?
+    self.address_street				= DEFAULT_ADDRESS_STREET 	if address_street.nil?
+    self.address_city					= DEFAULT_ADDRESS_CITY 		if address_city.nil?
+    self.address_state				= DEFAULT_ADDRESS_STATE 	if address_state.nil?
+    self.address_zip					= DEFAULT_ADDRESS_ZIP 		if address_zip.nil?
+    self.phone_1							= DEFAULT_PHONE_1 				if phone_1.nil?
+    self.phone_2							= DEFAULT_PHONE_2 				if phone_2.nil?
+    self.fax									= DEFAULT_FAX 						if fax.nil?
+    self.bu_code							= DEFAULT_BU_CODE		 			if bu_code.nil?
 	end
 	
 	# Associations:

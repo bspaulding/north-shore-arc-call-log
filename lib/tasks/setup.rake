@@ -114,7 +114,7 @@ namespace :setup do
 		House::DEFAULT_HOUSES_AND_CODES.each do |house_and_code|
 			House.create!(:name => house_and_code[0],
 										:bu_code => house_and_code[1],
-										:agency_staff => House::DEFAULT_FIELD_TEXT,
+										:outside_agency_staff => House::DEFAULT_FIELD_TEXT,
 										:overview => House::DEFAULT_FIELD_TEXT,
 										:ratio => House::DEFAULT_FIELD_TEXT,
 										:trainings_needed => House::DEFAULT_FIELD_TEXT,
