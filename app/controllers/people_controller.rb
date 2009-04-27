@@ -29,4 +29,12 @@ class PeopleController < ApplicationController
   	@person.save!
   	redirect_to @person
   end
+  
+  # Deletes a Person's image
+  def remove_image
+  	@person = Person.find(params[:id])
+  	@person.image = nil
+  	@person.save!
+  	redirect_to @person
+  end
 end

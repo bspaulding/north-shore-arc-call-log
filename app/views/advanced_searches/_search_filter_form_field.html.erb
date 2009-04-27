@@ -1,4 +1,3 @@
-<td>
 <% if search_filter_form_field == "gender" %>
 	is <select name="new_filter_value">
 		<%= options_for_select ["male","female"] %>
@@ -10,6 +9,5 @@
 <% elsif search_filter_form_field == "hired_before" || search_filter_form_field == "hired_after" %>
 	<%= date_select 'new_filter_value', 'date', :order => [:month, :day, :year] %>
 <% else %>
-	is like <%= text_field_tag "new_filter_value" %>
+	contains <%= text_field_tag "new_filter_value" %>
 <% end %>
-</td>

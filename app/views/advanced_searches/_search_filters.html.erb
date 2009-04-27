@@ -9,9 +9,11 @@
 					<%= options_for_select @empty_filters.collect { |name| [name.humanize, name] }, @empty_filters.first %>
 				</select>
 			</td>
+			<td>
 			<div id="new_filter_form_field">
 				<%= render :partial => 'search_filter_form_field', :object => @empty_filters.first, :locals => {:search => search_filters} %>
 			</div>
+			</td>
 			<td>
 				<%= submit_tag 'Add Filter', :onclick => "$('spinner').show();" %>
 			</td>
