@@ -3,12 +3,11 @@ module HousesHelper
 	# Returns a formatted house address block for a particular house.
 	def house_address(house)
 		address_str = ""
-		(house.address_street == House::DEFAULT_ADDRESS_STREET) ? address_str += "#{house.address_street}<br/>"
-		(house.address_city == House::DEFAULT_ADDRESS_CITY) ? address_str += "#{house.address_city}, "
-		(house.address_state == House::DEFAULT_ADDRESS_STATE) ? address_str += "#{house.address_state} "
-		(house.address_zip == House::DEFAULT_ADDRESS_ZIP) ? address_str += "#{house.address_zip}"
+		(house.address_street == House::DEFAULT_ADDRESS_STREET) ? address_str += "#{house.address_street}<br/>" : nil
+		(house.address_city == House::DEFAULT_ADDRESS_CITY) ? address_str += "#{house.address_city}, " : nil
+		(house.address_state == House::DEFAULT_ADDRESS_STATE) ? address_str += "#{house.address_state} " : nil
+		(house.address_zip == House::DEFAULT_ADDRESS_ZIP) ? address_str += "#{house.address_zip}" : nil
 		address_str
-		end
 	end
 	
 	# Returns a formatted phone number block for a particular house.
