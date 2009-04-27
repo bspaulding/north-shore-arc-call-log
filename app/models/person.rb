@@ -17,7 +17,9 @@ class Person < ActiveRecord::Base
   has_and_belongs_to_many :houses
   has_and_belongs_to_many :roles
   
-  file_column :image
+  # file_column plugin
+  # http://www.kanthak.net/opensource/file_column/
+  file_column :image, :magick => {:geometry => "200x200>"}
   
   # Scopes
   named_scope :with_hrid, lambda { |hrid| { :conditions => { :hrid => hrid } } }

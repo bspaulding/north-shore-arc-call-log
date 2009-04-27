@@ -47,16 +47,24 @@
 			</p>
 			</div>
 		</td>
-		<td width="200px" valign="top">
+		<td width="200px" valign="top" align="center">
 			<img src="<%= (@person.image.blank?) ? '/images/profile_no_image.jpg' : url_for_file_column(@person, 'image') %>" class="profile_picture">
 			<% if @is_admin %>
 				<br/>
+				<% unless @person.image.blank?  %>
+					<p>
+					<%= link_to "Remove Picture", 
+							url_for(:action => 'remove_image', :id => @person.id), 
+							:confirm => "This photo will be permanently deleted.\nAre you sure you want to remove this picture?" %>
+					</p>
+				<% else %>
 				<b>Upload Profile Picture:</b>
 				<%= form_tag url_for(:controller => 'people', :action => 'upload_image'), :method => 'post', :multipart => true %>
 				<%= hidden_field_tag 'id', @person.id %>
 				<%= file_column_field "person", "image" %> 
 				<%= submit_tag "Upload" %>
 				</form>
+				<% end %>
 			<% end %>
 		</td>
 	</tr>
