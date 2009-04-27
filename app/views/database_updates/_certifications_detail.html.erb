@@ -1,0 +1,13 @@
+<% certifications_detail.changes.each_pair do |key, value| %>
+	<b><%= key.to_s.titleize %></b>
+	<ul>
+		<% value.each do |person_a| %>
+			<% begin %>
+			<% person = Person.find(person_a[0]) %>
+				<li>[<%= person_a[1] %>] <%= link_to person.name, person %></li>
+			<% rescue ActiveRecord::RecordNotFound %>
+				<li><em>Problem looking up person with id '<%= person_a[0] %>'</em></li>
+			<% end %>
+		<% end %>
+	</ul>
+<% end %>
