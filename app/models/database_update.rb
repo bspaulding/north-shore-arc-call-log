@@ -12,10 +12,13 @@
 # - the changes that were made, in the form designated below
 # 
 # === Storing Changes
-# :changes is a Hash of the following form:
+# :changes is a Hash whose form depends on the update_type:
+# 	Personnel Updates:
 #     {:created => [id1, id2, id3, ...],
 #      :updated => [[id4, attributeName, oldValue, newValue], ...]
 #      :destroyed => ["PersonName1", "PersonName2", "PersonName3", ...]}
+#		Certification Updates:
+# 		{:course_title/certification_name => [ [person_id1, exp_date], ... ]
 # Where each idN number is an id for a Person either created, updated or destroyed.
 # serialize tells Rails to store changes as text, and convert it to a Hash upon retrieval
 class DatabaseUpdate < ActiveRecord::Base
@@ -43,8 +46,6 @@ class DatabaseUpdate < ActiveRecord::Base
     # Check the headers, run the import only if they're correct
     # store each hrid found in hrids, so that we can easily delete people later
     # also initialize changes to a containing the expected arrays
-    self[:changes] = {:created => [], :updated => [], :destroyed => []}
-    hrids = []
     if(valid_headers?(worksheet.row(0)))
       case self.update_type
       	when "Personnel"
@@ -113,9 +114,26 @@ class DatabaseUpdate < ActiveRecord::Base
   # 
   # Runs an import on the passed in worksheet as a certification import
   def do_certification_import(worksheet)
+  	self.changes = {}
   	# Iterate each row in the spreadsheet
   	worksheet.each(1) do |row|
-  		# STUB
+  		person = Person.find_by_hrid(clean_str(row[0].to_s).to_i)
+  		unless person.nil? # ignore if no one exists
+  			course_title = clean_str(row[5].to_s)
+  			recert_due_date = row[6].date
+  			cert = Certification.find_or_create_by_name(course_title)
+  			pc = PersonsCertification.create!(
+  							:expiration_date => recert_due_date,
+  							:person => person,
+  							:certification => cert)
+  			pc.save!
+  			
+  			if self.changes[course_title.to_sym].nil?
+  				self.changes[course_title.to_sym] = [person.id, recert_due_date.to_s]
+  			else
+  				self.changes[course_title.to_sym] << [person.id, recert_due_date.to_s]
+  			end
+  		end
   	end  	
   end
   
@@ -123,6 +141,7 @@ class DatabaseUpdate < ActiveRecord::Base
   # 
   # Runs an import on the passed in worksheet as a personnel import
   def do_personnel_import(worksheet)
+  	self[:changes] = {:created => [], :updated => [], :destroyed => []}
   	hrids = []
   	# Iterate each row in the spreadsheet
     worksheet.each(1) do |row|

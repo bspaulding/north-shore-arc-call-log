@@ -5,33 +5,7 @@
 
 <hr/>
 
-<% unless @update.changes[:created].size == 0 %>
-<h3>Created</h3>
-<p>
-<% @update.changes[:created].each do |pid| %>	
-<% person = Person.find(pid) -%>
-<%= link_to person.name, person %><br/>
-<% end %>
-</p>
-<% end %>
-
-<% unless @update.changes[:updated].size == 0 %>
-<h3>Updated</h3>
-<p>
-<% @update.changes[:updated].each do |change| %>
-<%= Person.find(change[0]).name %>'s <%= change[1] %> from <%= change[2] %> to <%= change[3] %><br/>
-<% end %>
-</p>
-<% end %>
-
-<% unless @update.changes[:destroyed].size == 0 %>
-<h3>Updated</h3>
-<p>
-<% @update.changes[:destroyed].each do |pname| %>	
-<%= pname %><br/>
-<% end %>
-</p>
-<% end %>
+<%= render :partial => "#{@update.update_type.downcase}_detail", :object => @update %>
 </div>
 
 <div align="center">
