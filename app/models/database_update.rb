@@ -48,19 +48,14 @@ class DatabaseUpdate < ActiveRecord::Base
     if(valid_headers?(worksheet.row(0)))
       case self.update_type
       	when "Personnel"
+      		RAILS_DEFAULT_LOGGER.info "Detected Personnel Import"
       		do_personnel_import(worksheet)	
       	when "Certifications"
+      		RAILS_DEFAULT_LOGGER.info "Detected Certification Import"
       		do_certification_import(worksheet)
       	else
+      		RAILS_DEFAULT_LOGGER.info "Update_Type not set!"
       		raise "update_type not set!"
-      end
-      
-      # delete everyone with an hrid not found in hrids, report the changes
-      deletable_people = Person.find(:all, :conditions => "hrid != #{hrids.join(' AND hrid != ')}")
-      deletable_people.each do |person|
-        self[:changes][:destroyed] << person.name
-        RAILS_DEFAULT_LOGGER.info "Deleted Person {:id => #{person.id}, :name => #{person.name}}"
-        person.destroy
       end
     else
       # raise an InvalidSpreadsheetError
@@ -83,39 +78,35 @@ class DatabaseUpdate < ActiveRecord::Base
   # Header_row is an array of the string headers
   def valid_headers?(header_row)
     # Check against Personnel Headers first.
-    if valid_personel_headers?(header_row)
+    if valid_personnel_headers?(header_row)
     	self.update_type = "Personnel"
     	return true
     elsif valid_certification_headers?(header_row)
     	self.update_type = "Certifications"
     	return true
-    else
-    	return false
     end
+    return false
   end
   
   # Returns true if header_row matches VALID_PERSONNEL_HEADERS, false otherwise.
   def valid_personnel_headers?(header_row)
-	  # Each of the cells are compared individually, 
-    # because the header_row may contain empty cells at the end
-  	VALID_PERSONNEL_HEADERS.each_with_index do |valid_header, index|
-      if(header_row[index].to_s != valid_header)
-        return false
-      end
-    end
-    return true
+  	return arrays_match header_row, VALID_PERSONNEL_HEADERS
   end
   
   # Returns true if header_row matches VALID_CERTIFICATION_HEADERS, false otherwise.
   def valid_certification_headers?(header_row)
-	  # Each of the cells are compared individually, 
-    # because the header_row may contain empty cells at the end
-  	VALID_CERTIFICATION_HEADERS.each_with_index do |valid_header, index|
-      if(header_row[index].to_s != valid_header)
-        return false
-      end
-    end
-    return true
+  	return arrays_match header_row, VALID_CERTIFICATION_HEADERS
+  end
+  
+  # Returns true if each element of a1 is the same as the first elements of a2
+  def arrays_match(a1, a2)
+  	a2.each_with_index do |a2_column, index|
+  		clean_s = clean_str(a1[index].to_s)
+  		if(clean_s != a2_column)
+  			return false
+  		end
+  	end
+  	return true
   end
   
   # Precondition: valid_headers? has been called.
@@ -132,32 +123,34 @@ class DatabaseUpdate < ActiveRecord::Base
   # 
   # Runs an import on the passed in worksheet as a personnel import
   def do_personnel_import(worksheet)
+  	hrids = []
   	# Iterate each row in the spreadsheet
     worksheet.each(1) do |row|
       # extract values appropriately
       attrs = {}
-      attrs[:hrid] = row[0].to_i
-      attrs[:first_name] = row[1].to_s
-      attrs[:last_name] = row[2].to_s
-      attrs[:home_phone] = row[3].to_s
-      attrs[:mobile_phone] = row[4].to_s
-      attrs[:email_address] = row[5].to_s
+      attrs[:hrid] = clean_str(row[0].to_s).to_i
+      attrs[:first_name] = clean_str(row[1].to_s)
+      attrs[:last_name] = clean_str(row[2].to_s)
+      attrs[:home_phone] = clean_str(row[3].to_s)
+      attrs[:mobile_phone] = clean_str(row[4].to_s)
+      attrs[:email_address] = clean_str(row[5].to_s)
       attrs[:gender] = (row[6].to_s == 'M') ? "male" : "female" # reformat for native convention
-      attrs[:address_street] = [row[7].to_s, row[8].to_s].join("\n") # concatenate address1 and address2
-      attrs[:address_city] = row[9].to_s
-      attrs[:address_state] = row[10].to_s
-      attrs[:address_zip] = row[11].to_s
+      attrs[:address_street] = [clean_str(row[7].to_s), clean_str(row[8].to_s)].join("\n") # concatenate address1 and address2
+      attrs[:address_city] = clean_str(row[9].to_s)
+      attrs[:address_state] = clean_str(row[10].to_s)
+      attrs[:address_zip] = clean_str(row[11].to_s)
       attrs[:doh] = row[12].date
       pay_rate_split = row[13].to_s.split(".") # split the pay_rate instead of storing as a float
       attrs[:pay_rate_dollars] = pay_rate_split[0].to_i
       attrs[:pay_rate_cents] = pay_rate_split[1].to_i
       attrs[:bu_code] = row[14].to_s.to_i
-      attrs[:position] = row[15].to_s.titleize
+      attrs[:position] = clean_str(row[15].to_s.titleize)
       
       # record hrid
       hrids << attrs[:hrid]
       
       # check to see if this is a new person, if so create it
+      Rails.logger.info "Working on person with hrid = '#{attrs[:hrid]}'"
       person = Person.find_by_hrid(attrs[:hrid])
       if(person.nil?)
         # we have a new person, create this person
@@ -181,5 +174,20 @@ class DatabaseUpdate < ActiveRecord::Base
         end
       end
     end
+    
+    # delete everyone with an hrid not found in hrids, report the changes
+    deletable_people = Person.find(:all, :conditions => "hrid != #{hrids.join(' AND hrid != ')}")
+    deletable_people.each do |person|
+      self[:changes][:destroyed] << person.name
+      RAILS_DEFAULT_LOGGER.info "Deleted Person {:id => #{person.id}, :name => #{person.name}}"
+      person.destroy
+    end
+  end
+  
+  # removes null characters from the input string
+  def clean_str(s)
+  	clean_s = ""
+  	s.each_byte {|c| clean_s += "#{c.chr}" unless c == 0}
+  	clean_s
   end
 end

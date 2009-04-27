@@ -43,11 +43,11 @@ class DatabaseUpdatesController < ApplicationController
       # NOTE: All the work of running the update on the database is handled
       #       inside the DatabaseUpdate class on its first instantiation. i.e., upon create.
       @dbup = DatabaseUpdate.create(:spreadsheet_path => spreadsheet_file.path)
+      redirect_to @dbup
     rescue CallLogExceptions::InvalidSpreadsheetError
       # DatabaseUpdate has thrown an error related to the format of the spreadsheet. Alert the user.
-      flash[:error] = "<strong>The spreadsheet you provided is not in the anticipated format.</strong>\nPlease correct the sheet and try again."
-      redirect_to :controller => 'supervisor', :action => 'index'
+      flash[:error] = "<strong>The spreadsheet you provided is not in the anticipated format.</strong><br/>Please correct the sheet and try again."
+      redirect_to home_url(Person.find(session[:user_id]))
     end
-    redirect_to @dbup
   end
 end

@@ -9,7 +9,8 @@
 <h3>Created</h3>
 <p>
 <% @update.changes[:created].each do |pid| %>	
-<%= pid %><br/>
+<% person = Person.find(pid) -%>
+<%= link_to person.name, person %><br/>
 <% end %>
 </p>
 <% end %>
@@ -34,5 +35,5 @@
 </div>
 
 <div align="center">
-	<%= link_to "Continue -->", url_for(:controller => 'supervisor', :action => 'index') %>
+	<%= link_to "Continue -->", home_url %>
 </div>
