@@ -43,12 +43,14 @@
 			<b>Certifications</b><br/>
 			<% @person.persons_certifications.each do |pc| %>
 				<% exp_date = pc.expiration_date %>
-				<% if exp_date <= Date.today %>
-				<span style="color: red;">
-					<%= pc.certification.name %> - <em><%= exp_date.strftime("%B %d, %Y") unless pc.expiration_date.nil? %></em><br/>
-				</span>
-				<% else %>
-					<%= pc.certification.name %> - <em><%= exp_date.strftime("%B %d, %Y") unless pc.expiration_date.nil? %></em><br/>
+				<% unless exp_date.nil? %>
+					<% if exp_date <= Date.today %>
+					<span style="color: red;">
+						<%= pc.certification.name %> - <em><%= exp_date.strftime("%B %d, %Y") unless pc.expiration_date.nil? %></em><br/>
+					</span>
+					<% else %>
+						<%= pc.certification.name %> - <em><%= exp_date.strftime("%B %d, %Y") unless pc.expiration_date.nil? %></em><br/>
+					<% end %>
 				<% end %>
 			<% end %>
 			</p>

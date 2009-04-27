@@ -153,7 +153,7 @@ class HousesController < ApplicationController
   	
   	render :update do |page|
   		page.replace_html 'houses_list', :partial => 'houses_list_item', :collection => House.find(:all, :order => "name ASC")
-  		page.js "alert('Created house - #{house.name}')"
+  		page << "alert('Created house - #{house.name}')"
   	end
   end
   
